@@ -1,7 +1,10 @@
 import React from 'react'
+import { Logo } from '../Logo'
 
 export const Nav = () => {
   return (
-    <div>Nav</div>
+    <nav className='p-4'>
+        <Logo/>
+    </nav>
   )
 }
