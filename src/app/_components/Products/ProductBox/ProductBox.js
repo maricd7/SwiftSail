@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const ProductBox = () => {
+export const ProductBox = ({product}) => {
   return (
-    <div>ProductBox</div>
+    <div className='rounded-lg'>
+      
+    </div>
   )
 }
