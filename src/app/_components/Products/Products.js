@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { ProductBox } from './ProductBox';
+import { Icon } from '@iconify/react';
 
 export const Products = () => {
   const [productsData, setProductsData] = useState([]);
