@@ -24,9 +24,7 @@ export const Products = () => {
     <div>
       <ul className='flex flex-wrap gap-4 w-full justify-center align-center mx-auto'>
         {productsData.map((product, index) => (
-          <li key={index}>
-            <ProductBox product={product} />
-          </li>
+            <ProductBox product={product} key={index}/>
         ))}
       </ul>
     </div>
