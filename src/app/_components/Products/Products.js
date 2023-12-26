@@ -21,7 +21,7 @@ export const Products = () => {
   }, []);
 
   return (
-    <div>
+    <div className='z-10'>
       <ul className='flex flex-wrap gap-4 w-full justify-center align-center mx-auto'>
         {productsData.map((product, index) => (
             <ProductBox product={product} key={index}/>

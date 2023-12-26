@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ProductPage() {
+function ProductPage({query}) {
   return (
-    <div>ProductPage</div>
+    <div>ProductPage{query}</div>
   )
 }
 
