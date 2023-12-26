@@ -1,25 +1,15 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductBox } from './ProductBox';
 import { Icon } from '@iconify/react';
+import { useProductContext } from '@/app/contexts/CartContext';
 
 export const Products = () => {
   const [productsData, setProductsData] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const URL = 'https://dummyjson.com/products';
-        const res = await fetch(URL);
-        const products = await res.json();
-        setProductsData(products.products);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-    fetchProducts();
-  }, []);
-
+  const {products} =  useProductContext()
+  useEffect(()=>{
+    setProductsData(products)
+  },[products])
   return (
     <div className='z-10'>
       <ul className='flex flex-wrap gap-4 w-full justify-center align-center mx-auto'>
