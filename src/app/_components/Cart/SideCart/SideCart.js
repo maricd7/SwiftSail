@@ -12,7 +12,7 @@ export const SideCart = ({ toggleCart }) => {
   return (
     <div>
       <div className="h-full w-1/4 bg-white fixed right-0 z-40 mx-0 my-0 p-4">
-        <div className="w-full flex justify-end ">
+        <div className="w-full flex justify-end flex-col">
           <Icon
             className="cursor-pointer"
             icon="carbon:close"
@@ -21,7 +21,7 @@ export const SideCart = ({ toggleCart }) => {
             width="40"
             height="40"
           />
-          {cart && cart.map((item) => <h2 key={item.id}>{item.name}</h2>)}
+          {cart && cart.map((item) => <h2 key={item.id}>{item.title}</h2>)}
         </div>
       </div>
     </div>

@@ -30,6 +30,10 @@ export const ProductContextProvider = ({ children }) => {
     console.log(addedProduct, "ovo su kolica");
   };
 
+  const removeFromCart = (id) =>{
+    
+  }
+
   const contextValue = {
     cart,
     products: products,
