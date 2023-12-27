@@ -1,23 +1,24 @@
-'use client'
-import Image from 'next/image'
-import { Nav, Products } from './_components'
-import { SideCart } from './_components/Cart'
-import { useState } from 'react'
-import { ProductContextProvider } from './contexts/CartContext'
+"use client";
+import Image from "next/image";
+import { Nav, Products } from "./_components";
+import { SideCart } from "./_components/Cart";
+import { useState } from "react";
+import { ProductContextProvider } from "./contexts/CartContext";
 
 export default function Home() {
-  const [cart,setCart] = useState(false);
-  function toggleCart(){
-    setCart(!cart)
-    console.log('cart', cart)
+  const [cartOpened, setCartOpened] = useState(false);
+  function toggleCart() {
+    setCartOpened(!cartOpened);
+    console.log("cart", cartOpened);
   }
   return (
-   <div>
-    {cart && <SideCart toggleCart={toggleCart}/>}
-    <Nav toggleCart={toggleCart}/>
-    <ProductContextProvider>
-      <Products/>
-    </ProductContextProvider>
-   </div>
-  )
+    <div>
+      <ProductContextProvider>
+        {cartOpened && <SideCart toggleCart={toggleCart} />}
+
+        <Nav toggleCart={toggleCart} />
+        <Products />
+      </ProductContextProvider>
+    </div>
+  );
 }

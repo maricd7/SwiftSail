@@ -22,15 +22,16 @@ export const ProductContextProvider = ({ children }) => {
     };
     fetchProducts();
   }, []);
+
   
-  const addToCart = (id)=>{
-   const addedProduct = products.find(product => product.id === id) ;
-    setCart([...cart,addedProduct])
-    console.log(cart, 'ovo su kolica')
-  }
+  const addToCart = (id) => {
+    const addedProduct = products.find(product => product.id === id);
+    setCart([...cart, addedProduct]);
+    console.log(addedProduct, "ovo su kolica");
+  };
 
   const contextValue = {
-    cart: cart,
+    cart,
     products: products,
     addToCart,
   };
