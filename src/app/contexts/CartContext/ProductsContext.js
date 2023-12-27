@@ -3,11 +3,12 @@ import { createContext, useState, useEffect, useContext } from "react";
 const ProductContext = createContext({
   products: null,
   cart: null,
+  addToCart : ()=> [] ,
 });
 
 export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [products, setProducts] = useState([]); // Fix the typo here
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -25,6 +26,7 @@ export const ProductContextProvider = ({ children }) => {
   const contextValue = {
     cart: cart,
     products: products,
+    addToCart,
   };
 
   return (
