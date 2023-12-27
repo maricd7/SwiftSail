@@ -4,6 +4,8 @@ const ProductContext = createContext({
   products: null,
   cart: null,
   addToCart : ()=> [] ,
+  removeFromCart  : ()=>[], 
+
 });
 
 export const ProductContextProvider = ({ children }) => {
@@ -31,13 +33,15 @@ export const ProductContextProvider = ({ children }) => {
   };
 
   const removeFromCart = (id) =>{
-    
+    const itemToRemove = cart.find(product => product.id !== id); 
+    setCart([itemToRemove])
   }
 
   const contextValue = {
     cart,
     products: products,
     addToCart,
+    removeFromCart,
   };
 
   return (
