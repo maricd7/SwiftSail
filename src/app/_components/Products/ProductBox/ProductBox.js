@@ -11,7 +11,7 @@ export const ProductBox = ({ product}) => {
     addToCart(id);
   };
   return (
-    <div className="rounded-xl max-w-xs mt-8 bg-white rounded overflow-hidden shadow-lg p-4 cursor-pointer hover:border-2 border-orange-400 flex flex-col justify-center items-center">
+    <div className="rounded-xl max-w-xs mt-8 bg-white rounded overflow-hidden shadow-lg p-4 cursor-pointer  flex flex-col justify-center items-center">
       <Link href={{ pathname: productRef, query: product }} className="flex justify-center  flex-col">
         <img
           src={product.images[0]}

@@ -3,9 +3,8 @@ import { createContext, useState, useEffect, useContext } from "react";
 const ProductContext = createContext({
   products: null,
   cart: null,
-  addToCart : ()=> [] ,
-  removeFromCart  : ()=>[], 
-
+  addToCart: () => [],
+  removeFromCart: () => [],
 });
 
 export const ProductContextProvider = ({ children }) => {
@@ -14,28 +13,35 @@ export const ProductContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const URL = 'https://dummyjson.com/products';
+        const URL = "https://dummyjson.com/products";
         const res = await fetch(URL);
         const productsData = await res.json();
         setProducts(productsData.products);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       }
     };
     fetchProducts();
   }, []);
 
-  
   const addToCart = (id) => {
-    const addedProduct = products.find(product => product.id === id);
+    const addedProduct = products.find((product) => product.id === id);
     setCart([...cart, addedProduct]);
     console.log(addedProduct, "ovo su kolica");
   };
 
-  const removeFromCart = (id) =>{
-    const itemToRemove = cart.find(product => product.id !== id); 
-    setCart([itemToRemove])
-  }
+  const removeFromCart = (id) => {
+    if (cart.length) {
+      const itemToRemove = cart.find((product) => product.id !== id);
+      if (itemToRemove === undefined) {
+        setCart([]);
+      } else {
+        setCart([itemToRemove]);
+      }
+    } else {
+      console.log("no items in cart");
+    }
+  };
 
   const contextValue = {
     cart,
@@ -45,15 +51,19 @@ export const ProductContextProvider = ({ children }) => {
   };
 
   return (
-    <ProductContext.Provider value={contextValue}>{children}</ProductContext.Provider>
+    <ProductContext.Provider value={contextValue}>
+      {children}
+    </ProductContext.Provider>
   );
 };
 
 export const useProductContext = () => {
-  const productContext = useContext(ProductContext); 
+  const productContext = useContext(ProductContext);
 
   if (!productContext) {
-    throw new Error("No ProductContext.Provider found when calling useProductContext.");
+    throw new Error(
+      "No ProductContext.Provider found when calling useProductContext."
+    );
   }
   return productContext;
 };

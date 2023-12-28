@@ -22,8 +22,8 @@ export const SideCart = ({ toggleCart }) => {
             width="40"
             height="40"
           />
-          {!cart && <div>Your Cart is empty</div>}
-          {cart && cart.map((item) => <CartProduct product={item} onClick={()=>removeFromCart(item.id)}/>)}
+          {!cart.length && <div>Your Cart is empty</div>}
+          {cart && cart.map((item, index) => <CartProduct product={item} onClick={()=>removeFromCart(item.id)} key={index}/>)}
         </div>
       </div>
     </div>
