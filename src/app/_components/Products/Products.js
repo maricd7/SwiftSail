@@ -9,7 +9,7 @@ export const Products = () => {
 
   return (
     <div className='z-10'>
-      <ul className='flex flex-wrap gap-4 w-full justify-center align-center mx-auto'>
+      <ul className='flex flex-wrap gap-4 w-full justify-center items-center'>
         {products.map((product, index) => (
             <ProductBox  product={product} key={index}/>
         ))}
