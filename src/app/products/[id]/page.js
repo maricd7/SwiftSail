@@ -5,13 +5,12 @@ import { useSearchParams } from 'next/navigation'
 
 function ProductPage({ params}) {
   const searchParams = useSearchParams()
-  const productName = searchParams.get('title')
-  console.log(productName, 'product name')
+ 
 
 
   return (
     <div>
-      <TopBox/>
+      <TopBox productparams = {searchParams}/>
     </div>
   );
 }

@@ -1,10 +1,20 @@
-import React from 'react'
+import React from "react";
 
-export const TopBox = ({query}) => {
-  console.log(query, 'ovo je kveri')
-    return (
+export const TopBox = ({ productparams }) => {
+  console.log(productparams, "ovo je kveri");
+  const productName = productparams.get("title");
+  const productPrice = productparams.get("price");
+  const productDescription = productparams.get("description");
+  const productImage = productparams.get('thumbnail')
+
+  return (
     <div>
-        <h1></h1>
+      <img src={productImage}/>
+      <div>
+        <h1>{productName}</h1>
+        <p>{productDescription}</p>
+        <h2>${productPrice}</h2>
+      </div>
     </div>
-  )
-}
+  );
+};
