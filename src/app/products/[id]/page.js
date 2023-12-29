@@ -1,8 +1,11 @@
+import { TopBox } from '@/app/_components'
 import React from 'react'
 
 function ProductPage({query}) {
+
+
   return (
-    <div>ProductPage{query}</div>
+    <div>dsad<TopBox query={query}/></div>
   )
 }
 

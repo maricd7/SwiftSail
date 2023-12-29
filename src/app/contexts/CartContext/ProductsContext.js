@@ -32,14 +32,9 @@ export const ProductContextProvider = ({ children }) => {
 
   const removeFromCart = (id) => {
     if (cart.length) {
-      const itemToRemove = cart.find((product) => product.id !== id);
-      if (itemToRemove === undefined) {
-        setCart([]);
-      } else {
-        setCart([itemToRemove]);
-      }
-    } else {
-      console.log("no items in cart");
+     const newCart = cart.filter(cartItem => cartItem.id !== id)
+    setCart([...newCart]);
+    console.log(newCart)
     }
   };
 
