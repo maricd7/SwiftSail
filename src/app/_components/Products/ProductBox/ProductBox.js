@@ -6,7 +6,6 @@ import { useProductContext } from '@/app/contexts/CartContext';
 export const ProductBox = ({ product}) => {
   const productRef = "/products/" + product.id;
   const {addToCart} = useProductContext()
-
   const addProductItemToContext = (id) => () => {
     addToCart(id);
   };
