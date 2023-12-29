@@ -9,7 +9,7 @@ function ProductPage({ params}) {
 
 
   return (
-    <div>
+    <div className="mx-auto my-24 flex justify-center h-screen	">
       <TopBox productparams = {searchParams}/>
     </div>
   );

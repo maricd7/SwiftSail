@@ -1,4 +1,5 @@
 import React from "react";
+import { CtaButton } from "../../common";
 
 export const TopBox = ({ productparams }) => {
   console.log(productparams, "ovo je kveri");
@@ -8,12 +9,13 @@ export const TopBox = ({ productparams }) => {
   const productImage = productparams.get('thumbnail')
 
   return (
-    <div>
-      <img src={productImage}/>
-      <div>
-        <h1>{productName}</h1>
+    <div className="flex gap-8 mx-auto">
+      <img src={productImage} className="w-96 h-96"/>
+      <div className="max-w-lg w-lg">
+        <h1 className="text-4xl font-bold">{productName}</h1>
         <p>{productDescription}</p>
-        <h2>${productPrice}</h2>
+        <h2 className="text-2xl">${productPrice}</h2>
+        <CtaButton text='Add to cart'/>
       </div>
     </div>
   );
