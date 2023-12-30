@@ -15,7 +15,6 @@ export default function Home() {
     <div>
       <ProductContextProvider>
         {cartOpened && <SideCart toggleCart={toggleCart} />}
-
         <Nav toggleCart={toggleCart} />
         <Products />
       </ProductContextProvider>
