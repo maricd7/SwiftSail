@@ -11,6 +11,8 @@ export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   useEffect(() => {
+   
+
     const fetchProducts = async () => {
       try {
         const URL = "https://dummyjson.com/products";
