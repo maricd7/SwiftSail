@@ -10,6 +10,7 @@ const ProductContext = createContext({
 export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
    
 
@@ -39,6 +40,8 @@ export const ProductContextProvider = ({ children }) => {
     console.log(newCart)
     }
   };
+
+
 
   const contextValue = {
     cart,
