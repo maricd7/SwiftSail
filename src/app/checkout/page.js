@@ -4,7 +4,7 @@ import { CheckoutProducts } from '../_components/CheckoutProducts'
 
 const Checkout = () => {
   return (
-    <div className=' w-full h-cover flex flex-col items-center justify-center my-8'>
+    <div className='w-full h-cover flex items-start justify-center my-8 gap-8'>
       <CheckoutForm/>
       <CheckoutProducts/>
     </div>
