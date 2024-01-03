@@ -5,11 +5,13 @@ const ProductContext = createContext({
   cart: null,
   addToCart: () => [],
   removeFromCart: () => [],
+
 });
 
 export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
+  
 
   useEffect(() => {
    
@@ -30,13 +32,16 @@ export const ProductContextProvider = ({ children }) => {
   const addToCart = (id) => {
     const addedProduct = products.find((product) => product.id === id);
     setCart([...cart, addedProduct]);
+    localStorage.setItem('cart',JSON.stringify([...cart, addedProduct]));
     console.log(addedProduct, "ovo su kolica");
   };
 
   const removeFromCart = (id) => {
+    localStorage.setItem('cart', [])
     if (cart.length) {
      const newCart = cart.filter(cartItem => cartItem.id !== id)
     setCart([...newCart]);
+    localStorage.setItem('cart',JSON.stringify([...newCart]))
     console.log(newCart)
     }
   };
