@@ -5,13 +5,13 @@ const ProductContext = createContext({
   cart: null,
   addToCart: () => [],
   removeFromCart: () => [],
-
+  cartCounter:null,
 });
 
 export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
-  
+  const[cartCounter,setCartCounter] = useState(0); 
 
   useEffect(() => {
    
@@ -34,6 +34,7 @@ export const ProductContextProvider = ({ children }) => {
     setCart([...cart, addedProduct]);
     localStorage.setItem('cart',JSON.stringify([...cart, addedProduct]));
     console.log(addedProduct, "ovo su kolica");
+    setCartCounter(cartCounter+1);
   };
 
   const removeFromCart = (id) => {
@@ -42,6 +43,7 @@ export const ProductContextProvider = ({ children }) => {
      const newCart = cart.filter(cartItem => cartItem.id !== id)
     setCart([...newCart]);
     localStorage.setItem('cart',JSON.stringify([...newCart]))
+    setCartCounter(cartCounter-1)
     console.log(newCart)
     }
   };
@@ -51,6 +53,7 @@ export const ProductContextProvider = ({ children }) => {
   const contextValue = {
     cart,
     products: products,
+    cartCounter,
     addToCart,
     removeFromCart,
   };
