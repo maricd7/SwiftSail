@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 export const Input = ({ placeholder, label, type, name, onChange, onBlur, value }) => {
