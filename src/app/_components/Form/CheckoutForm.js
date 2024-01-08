@@ -33,6 +33,8 @@ export const CheckoutForm = () => {
           label="Email"
           placeholder="email"
           onChange={handleChange}
+          errors={errors.email}
+          touched={touched.email}
         />
         <Input
           value={values.name}
@@ -40,6 +42,8 @@ export const CheckoutForm = () => {
           label="Name"
           placeholder="Name"
           onChange={handleChange}
+          errors={errors.name}
+          touched={touched.name}
         />
         <Input
           value={values.phone}
@@ -48,6 +52,8 @@ export const CheckoutForm = () => {
           label="Phone"
           placeholder="Phone"
           onChange={handleChange}
+          errors={errors.phone}
+          touched={touched.phone}
         />
         <div>
           <Input
@@ -57,6 +63,8 @@ export const CheckoutForm = () => {
             placeholder="City"
             value={values.city}
             onChange={handleChange}
+            errors={errors.city}
+            touched={touched.city}
           />
           <Input
             type="text"
@@ -65,6 +73,8 @@ export const CheckoutForm = () => {
             placeholder="Address"
             value={values.address}
             onChange={handleChange}
+            errors={errors.address}
+            touched={touched.address}
           />
           <Input
             type="text"
@@ -73,6 +83,8 @@ export const CheckoutForm = () => {
             placeholder="Postal code"
             value={values.postalCode}
             onChange={handleChange}
+            errors={errors.postalCode}
+            touched={touched.postalCode}
           />
         </div>
         {errors.password && touched.password && (
