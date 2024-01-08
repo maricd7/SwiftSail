@@ -1,19 +1,10 @@
 'use client';
 import React from "react";
 import { CtaButton, Input } from "../common";
-import * as Yup from "yup";
 import { useFormik } from "formik";
+import { schema } from "@/app/Schemas";
 
 export const CheckoutForm = () => {
-  const schema = Yup.object().shape({
-    name: Yup.string().required(),
-    email: Yup.string().required().email(),
-    phone: Yup.string().required(),
-    city: Yup.string().required(),
-    address: Yup.string().required(),
-    postalCode: Yup.string().required(),
-  });
-
   const formik = useFormik({
     initialValues: {
       name: "",
