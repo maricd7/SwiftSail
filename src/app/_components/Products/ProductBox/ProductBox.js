@@ -21,7 +21,7 @@ export const ProductBox = ({ product }) => {
         className="flex justify-center  flex-col"
       >
         <ProductBoxImage product={product}/>
-        <h2 className="mt-4 w-32 h-20">{product.title}</h2>
+        <h2 className="mt-4 w-32 h-20">{product.name}</h2>
         <h1 className="text-2xl font-bold mt-4">${product.price}</h1>
       </Link>
       <CtaButton

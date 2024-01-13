@@ -2,11 +2,12 @@ import React from "react";
 import { CtaButton } from "../../common";
 
 export const TopBox = ({ productparams }) => {
+  console.log(productparams, 'parametri')
   console.log(productparams, "ovo je kveri");
   const productName = productparams.get("title");
   const productPrice = productparams.get("price");
   const productDescription = productparams.get("description");
-  const productImage = productparams.get('thumbnail')
+  const productImage = productparams.get('image')
 
   return (
     <div className="flex gap-8 mx-auto">
