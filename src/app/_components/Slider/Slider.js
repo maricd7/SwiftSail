@@ -14,12 +14,13 @@ export const Slider = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundSize: 'cover',
-        height: '400px'
+        backgroundSize: 'auto',
+        height: '400px',
+        backgroundRepeat:'no-repeat',
       }
     const slideImages = [
         {
-          url: 'https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+          url: '/static/slider1.png',
           caption: 'Slide 1'
         },
         {
@@ -37,7 +38,6 @@ export const Slider = () => {
          {slideImages.map((slideImage, index)=> (
             <div key={index}>
               <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
-                <span style={spanStyle}>{slideImage.caption}</span>
               </div>
             </div>
           ))} 
