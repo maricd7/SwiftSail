@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import supabase from "@/app/supabase";
 
 const ProductContext = createContext({
   products: null,
@@ -14,19 +15,21 @@ export const ProductContextProvider = ({ children }) => {
   const[cartCounter,setCartCounter] = useState(0); 
 
   useEffect(() => {
-   
-
-    const fetchProducts = async () => {
+    async function fetchData() {
       try {
-        const URL = "https://dummyjson.com/products";
-        const res = await fetch(URL);
-        const productsData = await res.json();
-        setProducts(productsData.products);
+        const { data, error } = await supabase
+          .from('products')
+          .select('*');
+        if (error) {
+          throw error;
+        }
+
+        setProducts(data);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error('Error fetching data:', error.message);
       }
-    };
-    fetchProducts();
+    }
+    fetchData();
   }, []);
 
   const addToCart = (id) => {

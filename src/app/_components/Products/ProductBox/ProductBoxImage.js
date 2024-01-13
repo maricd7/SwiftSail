@@ -3,12 +3,12 @@ import React from "react";
 
 export const ProductBoxImage = ({ product }) => {
   const myLoader = ({ src }) => {
-    return `${product.images[0]}`;
+    return `${product.image}`;
   };
   return (
     <Image
       loader={myLoader}
-      src={product.images[0]}
+      src={product.image}
       className="h-48 rounded-lg w-48"
       width={48}
       height={48}
