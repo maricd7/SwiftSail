@@ -3,6 +3,7 @@ import React from "react";
 import { CtaButton, Input } from "../common";
 import { useFormik } from "formik";
 import { schema } from "@/app/Schemas";
+import supabase from "@/app/supabase";
 
 export const CheckoutForm = () => {
   const formik = useFormik({
@@ -15,10 +16,51 @@ export const CheckoutForm = () => {
       city: "",
     },
     validationSchema: schema,
-    onSubmit: async ({ name, email, phone }) => {
+    onSubmit: async ({ name, email,address,city }) => {
+      try {
+        const { data, error } = await supabase
+          .from('customers')
+          .upsert([
+            {
+              name,
+              email,
+              address,
+              city,
+            },
+          ]);
+    
+        if (error) {
+          console.error('Error processing order:', error.message);
+        } else {
+          console.log('Order placed successfully');
+        }
+      } catch (error) {
+        console.error('Error placing order:', error);
+      }
+      console.log("Submitted");
+    },
+    onSubmit: async ({ productId, unitPrice}) => {
+      try {
+        const { data, error } = await supabase
+          .from('order_items')
+          .upsert([
+            {
+              productId, unitPrice
+            },
+          ]);
+    
+        if (error) {
+          console.error('Error processing order:', error.message);
+        } else {
+          console.log('Order placed successfully');
+        }
+      } catch (error) {
+        console.error('Error placing order:', error);
+      }
       console.log("Submitted");
     },
   });
+  
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 

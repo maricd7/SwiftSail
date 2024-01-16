@@ -1,13 +1,9 @@
 'use client'
 import React, { useContext, useEffect, useState } from "react";
 
-export const CheckoutProducts = () => {
-    const [cart,setCart] = useState([])
-    const[total,setTotal] = useState(null);
-    useEffect(()=>{
-        setCart(JSON.parse(localStorage.getItem('cart')))
-    },[])
-
+export const CheckoutProducts = ({cart}) => {
+ 
+  const[total,setTotal] = useState(null);
 
     //total setter
     useEffect(() => {
