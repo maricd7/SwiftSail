@@ -5,62 +5,55 @@ import { useFormik } from "formik";
 import { schema } from "@/app/Schemas";
 import supabase from "@/app/supabase";
 
-export const CheckoutForm = () => {
+export const CheckoutForm = ({ total_amount, cart }) => {
+
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       phone: "",
-      postalCode: "",
+      postal_code: "",
       address: "",
       city: "",
+      total_amount: total_amount,
     },
     validationSchema: schema,
-    onSubmit: async ({ name, email,address,city }) => {
+
+    onSubmit: async ({
+      name,
+      email,
+      address,
+      city,
+      postal_code,
+      phone,
+      total_amount,
+    }) => {
       try {
-        const { data, error } = await supabase
-          .from('customers')
+        const { data: customerData, error: customerError } = await supabase
+          .from("customers")
           .upsert([
             {
               name,
               email,
               address,
               city,
+              phone,
+              postal_code,
             },
           ]);
-    
-        if (error) {
-          console.error('Error processing order:', error.message);
-        } else {
-          console.log('Order placed successfully');
+
+        if (customerError) {
+          console.error(
+            "Error processing customer information:",
+            customerError.message
+          );
+          return;
         }
       } catch (error) {
-        console.error('Error placing order:', error);
+        console.log("error", error);
       }
-      console.log("Submitted");
-    },
-    onSubmit: async ({ productId, unitPrice}) => {
-      try {
-        const { data, error } = await supabase
-          .from('order_items')
-          .upsert([
-            {
-              productId, unitPrice
-            },
-          ]);
-    
-        if (error) {
-          console.error('Error processing order:', error.message);
-        } else {
-          console.log('Order placed successfully');
-        }
-      } catch (error) {
-        console.error('Error placing order:', error);
-      }
-      console.log("Submitted");
     },
   });
-  
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
@@ -120,13 +113,13 @@ export const CheckoutForm = () => {
           />
           <Input
             type="text"
-            name="postalCode"
+            name="postal_code"
             label="Postal code"
             placeholder="Postal code"
-            value={values.postalCode}
+            value={values.postal_code}
             onChange={handleChange}
-            errors={errors.postalCode}
-            touched={touched.postalCode}
+            errors={errors.postal_code}
+            touched={touched.postal_code}
           />
         </div>
         {errors.password && touched.password && (

@@ -1,26 +1,17 @@
 'use client'
 import React, { useContext, useEffect, useState } from "react";
 
-export const CheckoutProducts = ({cart}) => {
- 
-  const[total,setTotal] = useState(null);
-
-    //total setter
-    useEffect(() => {
-      let sum = 0;
-      cart.forEach((product) => {
-        sum += product.price;
-      });
-      setTotal(sum);
-    }, [cart]);
+export const CheckoutProducts = ({cart, total}) => {
+  console.log(cart)
 
   return (
     <div className='w-96 bg-white rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-8 '>
       <h4 className="font-semibold">Products</h4>
       <ul>
         {cart.map((product) => (
-          <li key={product.id} className="flex justify-between">
-            <span>{product.title}</span>
+       
+          <li key={product.product_id} className="flex justify-between">
+            <span>{product.name}</span>
             <span>${product.price}</span>
           </li>
         ))}
