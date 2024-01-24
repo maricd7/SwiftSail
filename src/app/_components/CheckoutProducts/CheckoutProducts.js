@@ -10,7 +10,7 @@ export const CheckoutProducts = ({cart, total}) => {
       <ul>
         {cart.map((product) => (
        
-          <li key={product.product_id} className="flex justify-between">
+          <li key={product.id} className="flex justify-between">
             <span>{product.name}</span>
             <span>${product.price}</span>
           </li>

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import { CtaButton, Input } from "../common";
 import { useFormik } from "formik";
@@ -6,7 +6,6 @@ import { schema } from "@/app/Schemas";
 import supabase from "@/app/supabase";
 
 export const CheckoutForm = ({ total_amount, cart }) => {
-
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -15,47 +14,13 @@ export const CheckoutForm = ({ total_amount, cart }) => {
       postal_code: "",
       address: "",
       city: "",
-      total_amount: total_amount,
     },
     validationSchema: schema,
+    
+  })
+  
+  const { errors, touched, values, handleChange,handleSubmit} = formik;
 
-    onSubmit: async ({
-      name,
-      email,
-      address,
-      city,
-      postal_code,
-      phone,
-      total_amount,
-    }) => {
-      try {
-        const { data: customerData, error: customerError } = await supabase
-          .from("customers")
-          .upsert([
-            {
-              name,
-              email,
-              address,
-              city,
-              phone,
-              postal_code,
-            },
-          ]);
-
-        if (customerError) {
-          console.error(
-            "Error processing customer information:",
-            customerError.message
-          );
-          return;
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-    },
-  });
-
-  const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
     <form onSubmit={handleSubmit} method="POST">
@@ -90,42 +55,39 @@ export const CheckoutForm = ({ total_amount, cart }) => {
           errors={errors.phone}
           touched={touched.phone}
         />
-        <div>
-          <Input
-            type="text"
-            name="city"
-            label="City"
-            placeholder="City"
-            value={values.city}
-            onChange={handleChange}
-            errors={errors.city}
-            touched={touched.city}
-          />
-          <Input
-            type="text"
-            name="address"
-            label="Address"
-            placeholder="Address"
-            value={values.address}
-            onChange={handleChange}
-            errors={errors.address}
-            touched={touched.address}
-          />
-          <Input
-            type="text"
-            name="postal_code"
-            label="Postal code"
-            placeholder="Postal code"
-            value={values.postal_code}
-            onChange={handleChange}
-            errors={errors.postal_code}
-            touched={touched.postal_code}
-          />
-        </div>
-        {errors.password && touched.password && (
-          <span>{errors.password}</span>
-        )}
-        <CtaButton type="submit" text="Order Now" />
+        <Input
+          type="text"
+          name="city"
+          label="City"
+          placeholder="City"
+          value={values.city}
+          onChange={handleChange}
+          errors={errors.city}
+          touched={touched.city}
+        />
+        <Input
+          type="text"
+          name="address"
+          label="Address"
+          placeholder="Address"
+          value={values.address}
+          onChange={handleChange}
+          errors={errors.address}
+          touched={touched.address}
+        />
+        <Input
+          type="text"
+          name="postal_code"
+          label="Postal code"
+          placeholder="Postal code"
+          value={values.postal_code}
+          onChange={handleChange}
+          errors={errors.postal_code}
+          touched={touched.postal_code}
+        />
+
+        {errors.password && touched.password && <span>{errors.password}</span>}
+        <CtaButton type="submit" text="Order Now"/>
       </div>
     </form>
   );

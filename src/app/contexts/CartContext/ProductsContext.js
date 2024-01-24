@@ -6,6 +6,7 @@ const ProductContext = createContext({
   cart: null,
   addToCart: () => [],
   removeFromCart: () => [],
+  searchProducts:()=>[],
   cartCounter:null,
 });
 
@@ -13,6 +14,7 @@ export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const[cartCounter,setCartCounter] = useState(0); 
+  const[filteredProducts,setFilteredProducts] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -52,6 +54,20 @@ export const ProductContextProvider = ({ children }) => {
   };
 
 
+  
+  //searching products logic
+  const searchProducts = (e)=>{
+  console.log('search products', e.target.value)
+   const searchedProducts = products.filter(product=>{
+    if(product.name.includes(e.target.value)){
+      console.log(product, 'inputed')
+    }else{
+      console.log('nema produkt')
+    }
+   })
+   setFilteredProducts(searchedProducts)
+  }
+
 
   const contextValue = {
     cart,
@@ -59,6 +75,7 @@ export const ProductContextProvider = ({ children }) => {
     cartCounter,
     addToCart,
     removeFromCart,
+    searchProducts,
   };
 
   return (
