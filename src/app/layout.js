@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       
-      <body className={inter.className}>
+      <body className='mt-24'>
       <Nav/>
         {children}</body>
     </html>

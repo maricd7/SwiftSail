@@ -13,7 +13,7 @@ export const SideCart = ({ toggleCart }) => {
 
   return (
     <div>
-      <div className="h-full w-1/4 bg-white fixed right-0 z-40 mx-0 my-0 p-4 top-0">
+      <div className="h-full w-1/4 bg-white fixed right-0 z-40 mx-0 my-0 p-4 top-0 mt-20">
         <div className="w-full flex justify-end flex-col gap-4">
           <Icon
             className="cursor-pointer"
