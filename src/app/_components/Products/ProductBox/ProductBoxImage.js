@@ -12,7 +12,7 @@ export const ProductBoxImage = ({ product }) => {
       className="h-48 rounded-lg w-48"
       width={48}
       height={48}
-      alt={product.title}
+      alt={product.name}
     />
   );
 };
