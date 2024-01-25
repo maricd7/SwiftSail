@@ -6,13 +6,13 @@ import { Loading } from "../loading";
 import Image from "next/image";
 import { ProductBoxImage } from "./ProductBoxImage";
 
-export const ProductBox = ({ product }) => {
+export const ProductBox = ({ product, handleModal }) => {
   const productRef = "/products/" + product.id;
   const { addToCart } = useProductContext();
   const addProductItemToContext = (id) => () => {
     addToCart(id);
+    handleModal()
   };
-
 
   return (
     <div className="rounded-xl max-w-xs mt-8 bg-white rounded overflow-hidden shadow-lg p-4 cursor-pointer  flex flex-col justify-center items-center">
@@ -20,7 +20,7 @@ export const ProductBox = ({ product }) => {
         href={{ pathname: productRef, query: product }}
         className="flex justify-center  flex-col"
       >
-        <ProductBoxImage product={product}/>
+        <ProductBoxImage product={product} />
         <h2 className="mt-4 w-32 h-20">{product.name}</h2>
         <h1 className="text-2xl font-bold mt-4">${product.price}</h1>
       </Link>
