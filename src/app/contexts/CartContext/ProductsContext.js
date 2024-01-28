@@ -8,6 +8,7 @@ const ProductContext = createContext({
   removeFromCart: () => [],
   searchProducts: () => [],
   cartCounter: null,
+  setCart:()=>[],
 });
 
 export const ProductContextProvider = ({ children }) => {
@@ -15,6 +16,8 @@ export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
+  const [quantity, setQuantity] = useState(1);
+
 
 
   useEffect(() => {
@@ -33,14 +36,14 @@ export const ProductContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  const addToCart = (id) => {
+  const addToCart = (id, quantity) => {
     const isProductInCart = cart.some((product) => product.id === id);
     if (!isProductInCart) {
       const addedProduct = products.find((product) => product.id === id);
-      
+      addedProduct.quantity = quantity; 
       setCart([...cart, addedProduct]);
       localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]));
-      setCartCounter(cartCounter + 1);
+      setCartCounter(cartCounter +1);
     } else {
       console.log("Product is already in the cart");
     }
@@ -48,7 +51,6 @@ export const ProductContextProvider = ({ children }) => {
 
   //removing from cart
   const removeFromCart = (id) => {
-    localStorage.setItem("cart", []);
     if (cart.length) {
       const newCart = cart.filter((cartItem) => cartItem.id !== id);
       setCart([...newCart]);
@@ -88,6 +90,7 @@ export const ProductContextProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     searchProducts,
+    setCart,
   };
 
   return (

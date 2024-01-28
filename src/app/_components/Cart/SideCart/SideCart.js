@@ -5,7 +5,7 @@ import { CartProduct } from "../CartProduct";
 import { CtaButton } from "../../common";
 import Link from "next/link";
 export const SideCart = ({ toggleCart }) => {
-  const { cart, removeFromCart } = useProductContext();
+  const { cart, removeFromCart,quanitySetter } = useProductContext();
 
   useEffect(() => {
     console.log("deki", cart);
@@ -24,7 +24,7 @@ export const SideCart = ({ toggleCart }) => {
             height="40"
           />
           {!cart.length && <div>Your Cart is empty</div>}
-          {cart && cart.map((item, index) => <CartProduct product={item} onClick={()=>removeFromCart(item.id)} key={index}/>)}
+          {cart && cart.map((item, index) => <CartProduct product={item} onClick={()=>removeFromCart(item.id)} key={index} onChange={quanitySetter}/>)}
           <Link href='/checkout'><CtaButton text='Go to checkout'/></Link>
         </div>
       </div>
