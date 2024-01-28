@@ -1,7 +1,11 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useState } from "react";
 
-export const CartProduct = ({ product, onClick,keyItem }) => {
+export const CartProduct = ({ product, onClick,keyItem,onChange }) => {
+ const [quantity, setQuantity] = useState(1)
+function quanitySetter(e){
+  setQuantity(e.target.value)
+}
 
   return (
     <div>
@@ -11,10 +15,10 @@ export const CartProduct = ({ product, onClick,keyItem }) => {
         <div className="flex flex-col">
           <h2 className="text-xl">{product.name}</h2>
           <h2>$ {product.price}</h2>
-          <select>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <select onChange={quanitySetter}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
         </select>
         </div>
        </div>

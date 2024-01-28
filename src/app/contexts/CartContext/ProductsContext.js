@@ -34,7 +34,6 @@ export const ProductContextProvider = ({ children }) => {
   }, []);
 
   const addToCart = (id) => {
-
     const isProductInCart = cart.some((product) => product.id === id);
     if (!isProductInCart) {
       const addedProduct = products.find((product) => product.id === id);
