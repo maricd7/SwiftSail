@@ -34,12 +34,20 @@ export const ProductContextProvider = ({ children }) => {
   }, []);
 
   const addToCart = (id) => {
-    const addedProduct = products.find((product) => product.id === id);
-    setCart([...cart, addedProduct]);
-    localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]));
-    setCartCounter(cartCounter + 1);
+
+    const isProductInCart = cart.some((product) => product.id === id);
+    if (!isProductInCart) {
+      const addedProduct = products.find((product) => product.id === id);
+      
+      setCart([...cart, addedProduct]);
+      localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]));
+      setCartCounter(cartCounter + 1);
+    } else {
+      console.log("Product is already in the cart");
+    }
   };
 
+  //removing from cart
   const removeFromCart = (id) => {
     localStorage.setItem("cart", []);
     if (cart.length) {

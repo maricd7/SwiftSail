@@ -11,6 +11,11 @@ export const CartProduct = ({ product, onClick,keyItem }) => {
         <div className="flex flex-col">
           <h2 className="text-xl">{product.name}</h2>
           <h2>$ {product.price}</h2>
+          <select>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
         </div>
        </div>
         <Icon icon="carbon:trash-can" className="w-8 h-8" onClick={onClick}/>
