@@ -4,3 +4,4 @@ export * from "./Products";
 export * from "./common";
 export * from "./ProductPage";
 export * from "./Slider";
+export * from "./Categories";

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Nav, Products, Slider } from "./_components";
+import { Categories, Nav, Products, Slider } from "./_components";
 import { SideCart } from "./_components/Cart";
 import { useState } from "react";
 import { ProductContextProvider } from "./contexts/CartContext";
@@ -18,6 +18,7 @@ export default function Home() {
         <Nav toggleCart={toggleCart}/>
        <div className="mt-20">
        <Slider/>
+        <Categories/>
         <Products />
        </div>
       </ProductContextProvider>

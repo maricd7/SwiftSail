@@ -4,7 +4,7 @@ import { ProductBox } from "./ProductBox";
 import { Icon } from "@iconify/react";
 import { useProductContext } from "@/app/contexts/CartContext";
 import { Loading } from "./loading";
-import { AddedToCart } from "../common";
+import { AddedToCart, Heading } from "../common";
 
 export const Products = () => {
   const { products } = useProductContext();
@@ -19,7 +19,7 @@ export const Products = () => {
   
   return (
     <div className="z-10 mx-72 mt-10">
-      <h1 className="font-bold text-4xl">Our international top sellers</h1>
+      <Heading text='Our international top sellers'/>
       {cartModal ? <AddedToCart/> : console.log('modal not opened')}
       <ul className="flex flex-wrap gap-4 w-full justify-start items-center">
         {products.map((product, index) => (
