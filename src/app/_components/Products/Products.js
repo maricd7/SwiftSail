@@ -18,9 +18,10 @@ export const Products = () => {
   }
   
   return (
-    <div className="z-10">
+    <div className="z-10 mx-72 mt-10">
+      <h1 className="font-bold text-4xl">Our international top sellers</h1>
       {cartModal ? <AddedToCart/> : console.log('modal not opened')}
-      <ul className="flex flex-wrap gap-4 w-full justify-center items-center mt-16">
+      <ul className="flex flex-wrap gap-4 w-full justify-start items-center">
         {products.map((product, index) => (
           <ProductBox product={product} key={index}  handleModal={handleModal}/>
         ))}

@@ -16,9 +16,6 @@ export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
-  const [quantity, setQuantity] = useState(1);
-
-
 
   useEffect(() => {
     async function fetchData() {

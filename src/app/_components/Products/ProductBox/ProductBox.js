@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { CtaButton } from "../../common";
+import { CategoryTag, CtaButton } from "../../common";
 import Link from "next/link";
 import { useProductContext } from "@/app/contexts/CartContext";
 import { Loading } from "../loading";
@@ -15,13 +15,15 @@ export const ProductBox = ({ product, handleModal }) => {
   };
 
   return (
-    <div className="rounded-xl max-w-xs mt-8 bg-white rounded overflow-hidden shadow-lg p-4 cursor-pointer  flex flex-col justify-center items-center">
+    <div className="rounded-xl max-w-xs mt-8 bg-white rounded overflow-hidden shadow-lg p-4 cursor-pointer  flex flex-col justify-center items-center border-2 border-gray-300 hover:scale-105">
       <Link
         href={{ pathname: productRef, query: product }}
         className="flex justify-center  flex-col"
       >
         <ProductBoxImage product={product} />
-        <h2 className="mt-4 w-32 h-20">{product.name}</h2>
+        <h2 className="mt-4 mb-2 w-32 text-xl">{product.name}</h2>
+        <CategoryTag product={product}/>
+        <p className="text-gray-400 mt-2">{product.description}</p>
         <h1 className="text-2xl font-bold mt-4">${product.price}</h1>
       </Link>
       <CtaButton
