@@ -2,7 +2,7 @@
 import React, { useState,useEffect } from 'react'
 import { CheckoutForm } from '../_components/Form'
 import { CheckoutProducts } from '../_components/CheckoutProducts'
-import { useProductContext } from '../contexts/CartContext'
+import { useProductContext } from '../contexts/ProductsContext'
 
 const Checkout = () => {
   const [cart,setCart] = useState([])

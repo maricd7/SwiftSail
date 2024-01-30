@@ -1,10 +1,10 @@
 import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
-import { useProductContext } from "@/app/contexts/CartContext";
+import { useProductContext } from "@/app/contexts/ProductsContext";
 import { CartProduct } from "../CartProduct";
 import { CtaButton } from "../../common";
 import Link from "next/link";
-export const SideCart = ({ toggleCart }) => {
+export const SideCart = ({toggleCart}) => {
   const { cart, removeFromCart,quanitySetter } = useProductContext();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const SideCart = ({ toggleCart }) => {
 
   return (
     <div>
-      <div className="h-full w-1/4 bg-white fixed right-0 z-40 mx-0 my-0 p-4 top-0 mt-20">
+      <div className="h-screen w-1/4 bg-white  absolute right-0 z-40 mx-0 my-0 p-4 top-0 mt-20">
         <div className="w-full flex justify-end flex-col gap-4">
           <Icon
             className="cursor-pointer"

@@ -2,7 +2,7 @@
 import React, { Suspense, useContext, useEffect, useState } from "react";
 import { ProductBox } from "./ProductBox";
 import { Icon } from "@iconify/react";
-import { useProductContext } from "@/app/contexts/CartContext";
+import { useProductContext } from "@/app/contexts/ProductsContext";
 import { Loading } from "./loading";
 import { AddedToCart, Heading } from "../common";
 
@@ -21,7 +21,7 @@ export const Products = () => {
     <div className="z-10 mx-72 mt-10">
       <Heading text='Our international top sellers'/>
       {cartModal ? <AddedToCart/> : console.log('modal not opened')}
-      <ul className="flex flex-wrap gap-4 w-full justify-start items-center">
+      <ul className="flex flex-wrap gap-4 w-full justify-between items-center">
         {products.map((product, index) => (
           <ProductBox product={product} key={index}  handleModal={handleModal}/>
         ))}

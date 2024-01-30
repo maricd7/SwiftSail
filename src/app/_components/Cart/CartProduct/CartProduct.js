@@ -1,4 +1,4 @@
-import { useProductContext } from "@/app/contexts/CartContext";
+import { useProductContext } from "@/app/contexts/ProductsContext";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 

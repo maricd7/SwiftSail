@@ -4,19 +4,19 @@ import supabase from "@/app/supabase";
 const ProductContext = createContext({
   products: null,
   cart: null,
+  cartCounter: null,
   addToCart: () => [],
   removeFromCart: () => [],
   searchProducts: () => [],
-  cartCounter: null,
   setCart:()=>[],
 });
+
 
 export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -79,7 +79,6 @@ export const ProductContextProvider = ({ children }) => {
       setProducts(searchedProducts);
     }
   };
-
   const contextValue = {
     cart,
     products: products,

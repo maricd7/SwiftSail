@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import { Categories, Nav, Products, Slider } from "./_components";
+import {useState } from "react";
 import { SideCart } from "./_components/Cart";
-import { useState } from "react";
-import { ProductContextProvider } from "./contexts/CartContext";
+import { ProductContextProvider } from "./contexts/ProductsContext";
 
 export default function Home() {
   const [cartOpened, setCartOpened] = useState(false);
@@ -14,13 +14,13 @@ export default function Home() {
   return (
     <div>
       <ProductContextProvider>
-        {cartOpened && <SideCart toggleCart={toggleCart} />}
-        <Nav toggleCart={toggleCart}/>
        <div className="mt-20">
+       <Nav toggleCart={toggleCart}/>
        <Slider/>
         <Categories/>
         <Products />
        </div>
+       {cartOpened && <SideCart toggleCart={toggleCart} />}
       </ProductContextProvider>
     </div>
   );
