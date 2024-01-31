@@ -1,8 +1,8 @@
 'use client'
 import React, { useState,useEffect } from 'react'
-import { CheckoutForm } from '../_components/Form'
-import { CheckoutProducts } from '../_components/CheckoutProducts'
 import { useProductContext } from '../contexts/ProductsContext'
+import { CheckoutProducts } from '../_components/CheckoutProducts'
+import { CheckoutForm } from '../_components/Form'
 
 const Checkout = () => {
   const [cart,setCart] = useState([])

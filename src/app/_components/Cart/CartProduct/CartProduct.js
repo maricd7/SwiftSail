@@ -1,13 +1,20 @@
 import { useProductContext } from "@/app/contexts/ProductsContext";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+import { DeleteItem } from "../../common";
+import { QuantitySelector } from "../QuantitySelector";
 
 export const CartProduct = ({ product, onClick }) => {
   const { cart, setCart } = useProductContext();
   const [quantity, setQuantity] = useState(product.quantity || 1);
 
   const quantitySetter = (e, productId) => {
-    const newQuantity = parseInt(e.target.value, 10);
+    let newQuantity = 1; 
+    if(e.target.value == 1){
+       newQuantity = 1;
+    }else{
+       newQuantity = parseInt(e.target.value, 10);
+    }
     setQuantity(newQuantity);
     const newCart = cart.map((cartItem) =>
       cartItem.id === productId ? { ...cartItem, quantity: newQuantity } : cartItem
@@ -25,16 +32,10 @@ export const CartProduct = ({ product, onClick }) => {
             <div className="flex flex-col">
               <h2 className="text-xl">{product.name}</h2>
               <h2>$ {product.price}</h2>
-              <select onChange={(e) => quantitySetter(e, product.id)} value={quantity}>
-                {[1, 2, 3].map((value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
+              <QuantitySelector onChange={(e) => quantitySetter(e, product.id)} value={quantity}/>
             </div>
           </div>
-          <Icon icon="carbon:trash-can" className="w-8 h-8" onClick={onClick} />
+          <DeleteItem onClick={onClick}/>
         </div>
       )}
     </div>

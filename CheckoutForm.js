@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { CtaButton, Input } from "../common";
+import { CtaButton, Input } from "../swiftsail/src/app/_components/common";
 import { useFormik } from "formik";
 import { schema } from "@/app/Schemas";
 import supabase from "@/app/supabase";

@@ -33,11 +33,11 @@ export const ProductContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  const addToCart = (id, quantity) => {
+  const addToCart = (id) => {
     const isProductInCart = cart.some((product) => product.id === id);
     if (!isProductInCart) {
       const addedProduct = products.find((product) => product.id === id);
-      addedProduct.quantity = quantity; 
+      addedProduct.quantity = 1; 
       setCart([...cart, addedProduct]);
       localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]));
       setCartCounter(cartCounter +1);
