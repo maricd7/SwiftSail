@@ -23,8 +23,8 @@ export const Products = () => {
       {cartModal ? <AddedToCart/> : console.log('modal not opened')}
       <ul className="flex flex-wrap gap-4 w-full justify-between items-center">
         {products.map((product, index) => (
-          <ProductBox product={product} key={index}  handleModal={handleModal}/>
-        ))}
+            <ProductBox product={product} key={index}  handleModal={handleModal}/>
+          ))}
       </ul>
     </div>
   );

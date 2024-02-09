@@ -20,7 +20,7 @@ export const ProductContextProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data, error } = await supabase.from("products").select("*");
+        const { data, error } = await supabase.from("products").select("*").eq('status', true);
         if (error) {
           throw error;
         }
