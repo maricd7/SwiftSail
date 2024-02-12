@@ -33,7 +33,8 @@ export const ProductBox = ({ product, handleModal }) => {
           className="flex justify-center  flex-col"
         >
           <ProductBoxImage product={product} />
-          <div className="text-left">
+          <div className="text-left relative">
+            {product.discount ? <span className="absolute top-0 right-0">{product.discount}</span> : console.log('no discount')}
             <h2 className="mt-4 mb-2 text-xl">{product.name}</h2>
             <CategoryTag product={product} />
             <p className="text-gray-400 mt-2 h-20" style={{maxWidth:'160px'}}>{productDescription}</p>
