@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useProductContext } from "@/app/contexts/ProductsContext";
 import Image from "next/image";
 import { ProductBoxImage } from "./ProductBoxImage";
+import ProductDiscount from "./ProductDiscount";
+import ProductPrice from "./ProductPrice";
 
 
 export const ProductBox = ({ product, handleModal }) => {
@@ -30,15 +32,15 @@ export const ProductBox = ({ product, handleModal }) => {
       <div className="rounded-xl max-w-md mt-8 bg-white rounded overflow-hidden shadow-lg p-4 cursor-pointer  flex flex-col justify-start items-center border-2 border-gray-300 hover:scale-105">
         <Link
           href={{ pathname: productRef, query: product }}
-          className="flex justify-center  flex-col"
+          className="flex justify-center  flex-col  relative"
         >
+          {product.discount ? <ProductDiscount discount={product.discount}/> : <></>}
           <ProductBoxImage product={product} />
-          <div className="text-left relative">
-            {product.discount ? <span className="absolute top-0 right-0">{product.discount}</span> : console.log('no discount')}
+          <div className="text-left">
             <h2 className="mt-4 mb-2 text-xl">{product.name}</h2>
             <CategoryTag product={product} />
             <p className="text-gray-400 mt-2 h-20" style={{maxWidth:'160px'}}>{productDescription}</p>
-            <p className="mt-2 text-xl font-bold">${product.price}</p>
+            <ProductPrice price={product.price} discount={product.discount}/>
           </div>
         </Link>
         <CtaButton
