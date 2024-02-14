@@ -5,3 +5,4 @@ export * from "./common";
 export * from "./ProductPage";
 export * from "./Slider";
 export * from "./Categories";
+export * from "./Footer";
