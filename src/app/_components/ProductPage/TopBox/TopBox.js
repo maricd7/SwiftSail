@@ -18,6 +18,9 @@ export const TopBox = ({ productparams }) => {
         <h2 className="text-2xl">${productPrice}</h2>
         <CtaButton text='Add to cart'/>
       </div>
+      <div>
+        {productDescription}
+      </div>
     </div>
   );
 };
