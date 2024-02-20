@@ -4,6 +4,7 @@ import { Categories, Nav, Products, Slider } from "./_components";
 import {useState } from "react";
 import { SideCart } from "./_components/Cart";
 import { ProductContextProvider } from "./contexts/ProductsContext";
+import CartIcon from "./_components/Cart/CartIcon/CartIcon";
 
 export default function Home() {
   const [cartOpened, setCartOpened] = useState(false);
@@ -21,6 +22,7 @@ export default function Home() {
         <Products />
        </div>
        {cartOpened && <SideCart toggleCart={toggleCart} />}
+       <CartIcon toggleCart={toggleCart}/>
       </ProductContextProvider>
     </div>
   );

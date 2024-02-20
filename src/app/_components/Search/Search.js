@@ -6,7 +6,7 @@ import React from 'react'
 export const Search = () => {
   const {searchProducts} = useProductContext()
   return (
-    <div className='w-1/2 relative'>
+    <div className='relative'>
        <Icon icon="carbon:search" width="24" height="24" style={{color:'#000'}} className='absolute left-6 top-1/3' />
         <input onChange={(e)=>{
          searchProducts(e)
