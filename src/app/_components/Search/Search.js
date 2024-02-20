@@ -10,7 +10,7 @@ export const Search = () => {
        <Icon icon="carbon:search" width="24" height="24" style={{color:'#000'}} className='absolute left-6 top-1/3' />
         <input onChange={(e)=>{
          searchProducts(e)
-        }} className='border-2 border-slate-950 rounded-lg px-8 py-4 w-full ml-4' type='text' placeholder='Search products'/>
+        }} className='border-2 border-gray-400 rounded-lg px-16 py-4 w-full ' type='text' placeholder='Search products'/>
     </div>
   )
 }
