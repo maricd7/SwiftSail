@@ -16,7 +16,6 @@ export default function Home() {
     <div>
       <ProductContextProvider>
        <div className="mt-20">
-       <Nav toggleCart={toggleCart}/>
        <Slider/>
         <Categories/>
         <Products />

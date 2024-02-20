@@ -3,6 +3,7 @@ import { useProductContext } from '@/app/contexts/ProductsContext'
 import React, { useEffect, useState } from 'react'
 import { Heading } from '../common';
 import { Category } from './Category';
+import { Search } from '../Search';
 
 export const Categories = () => {
     const {products} = useProductContext()
@@ -14,6 +15,7 @@ export const Categories = () => {
           <Category  key={index} category={product.category}/>
         ))}
          </ul>
+         <Search/>
     </div>
   )
 }

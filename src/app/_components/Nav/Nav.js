@@ -1,10 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { Logo } from '../Logo'
-import { Icon } from '@iconify/react'
-import { CartCounter } from '../Cart/CartCounter'
-import { Search } from '../Search'
-import { SideCart } from '../Cart'
 import { NavCategories } from '../Categories'
 
 export const Nav = () => {
@@ -14,7 +10,6 @@ export const Nav = () => {
           <Logo/>
           <NavCategories/>
         </div>
-        <Search/>
     </nav>
   )
 }
