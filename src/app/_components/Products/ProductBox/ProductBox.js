@@ -29,7 +29,7 @@ export const ProductBox = ({ product, handleModal }) => {
     checkDescription()
   },[product])
   return (
-      <div className="rounded-xl max-w-md mt-8 bg-white rounded overflow-hidden shadow-lg p-4 cursor-pointer  flex flex-col justify-start items-center border-2 border-gray-300 hover:scale-105">
+      <div className="rounded-xl max-w-md mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center  hover:scale-105">
         <Link
           href={{ pathname: productRef, query: product }}
           className="flex justify-center  flex-col  relative"
