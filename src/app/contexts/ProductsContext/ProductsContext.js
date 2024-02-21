@@ -9,6 +9,7 @@ const ProductContext = createContext({
   removeFromCart: () => [],
   searchProducts: () => [],
   setCart:()=>[],
+  setProducts:()=>[],
 });
 
 
@@ -87,6 +88,7 @@ export const ProductContextProvider = ({ children }) => {
     removeFromCart,
     searchProducts,
     setCart,
+    setProducts,
   };
 
   return (
