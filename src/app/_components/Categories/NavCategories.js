@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react';
 
 export const NavCategories = () => {
     const [dropDownCategories, setDropDownCategories] = useState(false)
-    const {products} = useProductContext()
+    const {categories} = useProductContext()
 
     function toggleDropDown(){
         setDropDownCategories(!dropDownCategories)
@@ -18,8 +18,8 @@ export const NavCategories = () => {
          <Icon icon="carbon:arrow-down" width="24" height="24"  style={{color:'#fff'}} />
          {dropDownCategories && 
              <ul className='flex flex-col gap-4 mt-10 absolute bg-white p-2 top-0 rounded-lg left-0 w-full'>
-             {products.map((product, index) => (
-              <Category  key={index} category={product.category}/>
+             {categories.map((category, index) => (
+              <Category  key={index} category={category}/>
             ))}
              </ul>
     }

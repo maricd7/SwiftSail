@@ -5,6 +5,7 @@ const ProductContext = createContext({
   products: null,
   cart: null,
   cartCounter: null,
+  categories:null,
   addToCart: () => [],
   removeFromCart: () => [],
   searchProducts: () => [],
@@ -18,6 +19,8 @@ export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
+  const [categories,setCategories] = useState([])
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -80,9 +83,26 @@ export const ProductContextProvider = ({ children }) => {
       setProducts(searchedProducts);
     }
   };
+
+  //filtering all categories based on products 
+useEffect(()=>{
+  let uniqCategories  = []
+  products.forEach(product=>{
+    if(uniqCategories.some(category => category===product.category)){
+      return false
+    }
+    uniqCategories.push(product.category)
+  })
+  setCategories(uniqCategories)
+},[products])
+
+
+
+
   const contextValue = {
     cart,
     products: products,
+    categories,
     cartCounter,
     addToCart,
     removeFromCart,
