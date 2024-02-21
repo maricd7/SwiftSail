@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Categories, Nav, Products, Slider } from "./_components";
+import { Categories, Nav, Products, ShopHeader, Slider } from "./_components";
 import {useState } from "react";
 import { SideCart } from "./_components/Cart";
 import { ProductContextProvider } from "./contexts/ProductsContext";
@@ -16,7 +16,8 @@ export default function Home() {
     <div>
       <ProductContextProvider>
        <div className="mt-20">
-       <Slider/>
+        <ShopHeader/>
+       {/* <Slider/> */}
         <Categories/>
         <Products />
        </div>

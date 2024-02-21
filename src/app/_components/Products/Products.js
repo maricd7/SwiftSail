@@ -1,9 +1,7 @@
 "use client";
-import React, { Suspense, useContext, useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { ProductBox } from "./ProductBox";
-import { Icon } from "@iconify/react";
 import { useProductContext } from "@/app/contexts/ProductsContext";
-import { Loading } from "./loading";
 import { AddedToCart, Heading } from "../common";
 
 export const Products = () => {
