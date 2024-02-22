@@ -1,3 +1,4 @@
+'use client'
 import React, {useEffect, useState } from "react";
 import { CategoryTag, CtaButton } from "../../common";
 import Link from "next/link";
@@ -6,13 +7,13 @@ import Image from "next/image";
 import { ProductBoxImage } from "./ProductBoxImage";
 import ProductDiscount from "./ProductDiscount";
 import ProductPrice from "./ProductPrice";
+import { Icon } from "@iconify/react";
 
 
 export const ProductBox = ({ product, handleModal }) => {
   const productRef = "/products/" + product.id;
   const { addToCart } = useProductContext();
   const addProductItemToContext = (id) => () => {
-    console.log('added')
     addToCart(id);
     handleModal()
   };
@@ -34,6 +35,7 @@ export const ProductBox = ({ product, handleModal }) => {
           href={{ pathname: productRef, query: product }}
           className="flex justify-center  flex-col  relative"
         >
+          <Icon icon="ph:heart-straight-fill" width="24" height="24"  style={{color: '#808080'}} />
           {product.discount ? <ProductDiscount discount={product.discount}/> : <></>}
           <ProductBoxImage product={product} />
           <div className="text-left">
