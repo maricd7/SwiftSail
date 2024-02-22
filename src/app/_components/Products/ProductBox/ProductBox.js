@@ -1,4 +1,3 @@
-'use client'
 import React, {useEffect, useState } from "react";
 import { CategoryTag, CtaButton } from "../../common";
 import Link from "next/link";
@@ -7,7 +6,7 @@ import Image from "next/image";
 import { ProductBoxImage } from "./ProductBoxImage";
 import ProductDiscount from "./ProductDiscount";
 import ProductPrice from "./ProductPrice";
-import { Icon } from "@iconify/react";
+import { WishListBtn } from "./WishListBtn";
 
 
 export const ProductBox = ({ product, handleModal }) => {
@@ -30,12 +29,12 @@ export const ProductBox = ({ product, handleModal }) => {
     checkDescription()
   },[product])
   return (
-      <div className="rounded-xl max-w-md mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center  hover:scale-105">
+      <div className="rounded-xl max-w-md mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center  hover:scale-105 relative">
+        <WishListBtn product={product}/>
         <Link
           href={{ pathname: productRef, query: product }}
           className="flex justify-center  flex-col  relative"
         >
-          <Icon icon="ph:heart-straight-fill" width="24" height="24"  style={{color: '#808080'}} />
           {product.discount ? <ProductDiscount discount={product.discount}/> : <></>}
           <ProductBoxImage product={product} />
           <div className="text-left">

@@ -6,11 +6,13 @@ const ProductContext = createContext({
   cart: null,
   cartCounter: null,
   categories:null,
+  wishList:null,
   addToCart: () => [],
   removeFromCart: () => [],
   searchProducts: () => [],
   setCart:()=>[],
   setProducts:()=>[],
+  setWishList:()=>[],
 });
 
 
@@ -19,7 +21,8 @@ export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
-  const [categories,setCategories] = useState([])
+  const [categories,setCategories] = useState([]);
+  const [wishList,setWishList] = useState([])
 
   useEffect(() => {
     async function fetchData() {
@@ -95,7 +98,6 @@ useEffect(()=>{
   })
   setCategories(uniqCategories)
 },[products])
-
 
 
 
