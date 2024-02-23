@@ -7,3 +7,4 @@ export * from "./Slider";
 export * from "./Categories";
 export * from "./Footer";
 export * from "./ShopHeader";
+export * from "./WishListItems";
