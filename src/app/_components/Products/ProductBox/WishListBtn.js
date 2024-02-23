@@ -4,14 +4,7 @@ import React, { useEffect, useState } from "react";
 
 export const WishListBtn = ({ product }) => {
   const [iconColor, setIconColor] = useState("#808080");
-  const [wishList, setWishList] = useState([]);
 
-  useEffect(() => {
-    const ogWishList = JSON.parse(localStorage.getItem("wishlist"));
-    if (ogWishList) {
-      setWishList(ogWishList);
-    }
-  }, []);
   const handleClick = () => {
     const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const isProductInWishlist = existingWishlist.some(
@@ -19,6 +12,8 @@ export const WishListBtn = ({ product }) => {
     );
 
     if (isProductInWishlist) {
+      const newWishList = existingWishlist.filter(item => item.id !== product.id)
+      localStorage.setItem('wishlist', JSON.stringify(newWishList))
       return;
     }
     const updatedWishlist = [...existingWishlist, product];
