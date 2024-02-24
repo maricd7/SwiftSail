@@ -1,10 +1,11 @@
 "use client";
 import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
+import { AddedToWishList } from "../../common";
 
 export const WishListBtn = ({ product }) => {
   const [iconColor, setIconColor] = useState("#808080");
-
+  const [wishListModal, setWishListModal] = useState(false)
   useEffect(() => {
     const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const isProductInWishlist = existingWishlist.some(
@@ -17,6 +18,7 @@ export const WishListBtn = ({ product }) => {
   }, [product.id]);
 
   const handleClick = () => {
+    handleModal()
     const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const isProductInWishlist = existingWishlist.some(
       (item) => item.id === product.id
@@ -36,8 +38,16 @@ export const WishListBtn = ({ product }) => {
     setIconColor("#FF6961");
   };
 
+  function handleModal() {
+    setWishListModal(!wishListModal);
+    setTimeout(() => {
+      setWishListModal(false);
+    }, 3000);
+  }
+
   return (
-    <Icon
+    <div>
+      <Icon
       className="absolute left-2 top-2 z-20"
       onClick={() => handleClick()}
       icon="ph:heart-straight-fill"
@@ -45,5 +55,7 @@ export const WishListBtn = ({ product }) => {
       height="24"
       style={{ color: iconColor }}
     />
+    {wishListModal ? <AddedToWishList/> : <></>}
+    </div>
   );
 };
