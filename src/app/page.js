@@ -10,7 +10,6 @@ export default function Home() {
   const [cartOpened, setCartOpened] = useState(false);
   function toggleCart() {
     setCartOpened(!cartOpened);
-    console.log("cart", cartOpened);
   }
   return (
     <div>

@@ -22,7 +22,7 @@ export const ProductContextProvider = ({ children }) => {
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
   const [categories,setCategories] = useState([]);
-  const [wishList,setWishList] = useState([])
+
 
   useEffect(() => {
     async function fetchData() {
@@ -44,7 +44,7 @@ export const ProductContextProvider = ({ children }) => {
     const isProductInCart = cart.some((product) => product.id === id);
     if (!isProductInCart) {
       const addedProduct = products.find((product) => product.id === id);
-      addedProduct.quantity = 1; 
+      addedProduct.quantity = 1 ;
       setCart([...cart, addedProduct]);
       localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]));
       setCartCounter(cartCounter +1);

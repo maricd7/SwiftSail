@@ -6,7 +6,6 @@ import { CtaButton } from "../../common";
 import Link from "next/link";
 export const SideCart = ({toggleCart}) => {
   const { cart, removeFromCart,quanitySetter } = useProductContext();
-
   useEffect(() => {
     console.log("deki", cart);
   }, [cart]);

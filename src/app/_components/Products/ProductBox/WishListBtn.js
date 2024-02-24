@@ -38,7 +38,7 @@ export const WishListBtn = ({ product }) => {
 
   return (
     <Icon
-      className="absolute left-2 top-2 z-40"
+      className="absolute left-2 top-2 z-20"
       onClick={() => handleClick()}
       icon="ph:heart-straight-fill"
       width="24"
