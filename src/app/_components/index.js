@@ -8,3 +8,4 @@ export * from "./Categories";
 export * from "./Footer";
 export * from "./ShopHeader";
 export * from "./WishListItems";
+export * from "./DiscountedItems";
