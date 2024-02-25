@@ -1,21 +1,20 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { CtaButton } from "../../common";
 import ProductPrice from "../../Products/ProductBox/ProductPrice";
 import { useProductContext } from "@/app/contexts/ProductsContext";
 
 export const TopBox = ({ productparams }) => {
   const productName = productparams.get("name");
-  const productId = productparams.get("id");
   const productPrice = productparams.get("price");
   const productDescription = productparams.get("description");
   const productImage = productparams.get("image");
   const productDiscount = productparams.get("discount");
-
+  const productId = Number(productparams.get("id"));
   const { addToCart } = useProductContext();
-
+ 
   const addProductItemToContext = (id) => () => {
-    addToCart(id);
+    addToCart(id)
   };
 
   return (
@@ -29,7 +28,7 @@ export const TopBox = ({ productparams }) => {
         ) : (
           <h2 className="text-xl font-bold">${productPrice}</h2>
         )}
-        <CtaButton text="Add to cart" onClick={addProductItemToContext(productId)} />
+        <CtaButton text="Add to cart" onClick={addProductItemToContext(productId)}/>
       </div>
       <div>{productDescription}</div>
     </div>
