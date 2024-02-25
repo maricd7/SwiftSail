@@ -35,7 +35,7 @@ export const Products = () => {
     setProducts(sorted);
   }
   return (
-    <div className="z-10 mx-72 mt-10">
+    <div className="z-10  mt-10">
       <div className="w-full justify-between flex">
         <Heading text="Our international top sellers" />
         <FilterProducts selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>

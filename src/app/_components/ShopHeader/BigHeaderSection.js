@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function BigHeaderSection() {
   return (
-    <div className="rounded-lg bg-orange-200 w-1/2 p-8 justify-center items-center flex ">
+    <div className="rounded-lg bg-orange-200 w-full p-8 justify-center items-center flex ">
         <div className="gap-2 flex flex-col ">
           <h2 className="font-bold text-2xl">MORE DEALS UP TO 50% DISCOUNT</h2>
           <p className="font-semibold text-slate-700">

@@ -4,7 +4,7 @@ import { Heading } from '../_components'
 
 function Wishlist() {
   return (
-    <div className='h-full mx-72'>
+    <div className='h-full'>
       <Heading text='Your wishlist'/>
       <WishListItems/>
     </div>

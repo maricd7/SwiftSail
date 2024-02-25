@@ -5,7 +5,7 @@ import React from "react";
 export default function SmallerHeaderSection({text,link,bg,btnClr,image,par,}) {
   return (
     <div
-      className="rounded-lg  w-1/2 h-full p-4 justify-between items-center flex"
+      className="rounded-lg  w-full h-full p-4 justify-between items-center flex"
       style={{ background: bg }}
     >
       <div className="gap-2 flex flex-col">

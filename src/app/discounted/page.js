@@ -6,7 +6,7 @@ import { Heading } from '../_components'
 
 function DisocuntedProducts() {
   return (
-   <div className='mx-72'>
+   <div>
      <ProductContextProvider>
         <Heading text='Discounted Products'/>
         <DiscountedItems/>

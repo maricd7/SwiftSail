@@ -6,7 +6,7 @@ import BigHeaderSection from "./BigHeaderSection";
 
 export const ShopHeader = () => {
   return (
-    <div className="mt-24 flex mx-72 gap-4 w-full ">
+    <div className="mt-24 flex gap-4 w-full ">
       <BigHeaderSection />
       <div className="flex flex-col w-full gap-4">
         <SmallerHeaderSection

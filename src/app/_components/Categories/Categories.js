@@ -9,7 +9,7 @@ export const Categories = () => {
   const {categories} = useProductContext()
   
   return (
-    <div className='mx-72 mt-10'>
+    <div className=' mt-10'>
          <Heading text='Browse products by category'/>
          <ul className='flex gap-4 mt-4'>
          {categories.map((category, index) => (
