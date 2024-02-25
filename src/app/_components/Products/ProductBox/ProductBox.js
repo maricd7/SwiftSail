@@ -12,7 +12,7 @@ export const ProductBox = ({ product, handleModal }) => {
   
 
   const productRef = "/products/" + product.id;
-  
+
   const { addToCart } = useProductContext();
   const addProductItemToContext = (id) => () => {
     addToCart(id);
@@ -35,7 +35,7 @@ export const ProductBox = ({ product, handleModal }) => {
 
  
   return (
-      <div className="rounded-xl max-w-md mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center  hover:scale-105 relative">
+      <div className="rounded-xl max-w-md mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center relative  ">
         <WishListBtn product={product}/>
         <Link
           href={{ pathname: productRef, query: product }}

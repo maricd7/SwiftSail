@@ -44,17 +44,20 @@ export const WishListBtn = ({ product }) => {
     handleModal()
   };
 
+  // modal for adding to wishlist
   function handleModal() {
     setWishListModal(!wishListModal);
     setTimeout(() => {
       setWishListModal(false);
-    }, 3000);
+    }, 1500);
   }
+
+  //modal for removing from wishlist
   function handleRemove() {
     setRemovedWishList(!wishListModal);
     setTimeout(() => {
       setRemovedWishList(false);
-    }, 3000);
+    }, 1500);
   }
 
   return (

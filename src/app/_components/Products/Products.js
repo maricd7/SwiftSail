@@ -1,13 +1,14 @@
 "use client";
-import React, {  useState } from "react";
+import React, { useState,useEffect } from "react";
 import { ProductBox } from "./ProductBox";
 import { useProductContext } from "@/app/contexts/ProductsContext";
 import { AddedToCart, Heading } from "../common";
+import { FilterProducts } from "./FilterProducts";
 
 export const Products = () => {
   const { products, setProducts } = useProductContext();
   const [cartModal, toggleCartModal] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState("Lowest");
+  const [selectedFilter, setSelectedFilter] = useState("Filter Products");
 
   function handleModal() {
     toggleCartModal(!cartModal);
@@ -16,25 +17,28 @@ export const Products = () => {
     }, 3000);
   }
 
-  function filterProducts(e) {
-    setSelectedFilter(e.target.value);
+  useEffect(() => {
+    filterProducts(selectedFilter);
+  }, [selectedFilter]);
 
-    if (selectedFilter === "Lowest") {
-      const sorted = [...products].sort((a, b) => b.price - a.price);
-      setProducts(sorted);
-    } else {
-      const sorted = [...products].sort((a, b) => a.price - b.price);
-      setProducts(sorted);
+  function filterProducts(filter) {
+    let sorted = [...products];
+
+    if (filter === "Lowest") {
+      sorted = [...products].sort((a, b) => a.price - b.price);
+    } else if (filter === "Highest") {
+      sorted = [...products].sort((a, b) => b.price - a.price);
+    } else if (filter === "Biggest Discount") {
+      sorted = [...products].sort((a, b) => b.discount - a.discount);
     }
+
+    setProducts(sorted);
   }
   return (
     <div className="z-10 mx-72 mt-10">
       <div className="w-full justify-between flex">
         <Heading text="Our international top sellers" />
-        <select value={selectedFilter} onChange={(e) => filterProducts(e)} className="text-slate-950 bg-transparent">
-          <option className="bg-transparent">Lowest</option>
-          <option className="bg-transparent">Highest</option>
-        </select>
+        <FilterProducts selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>
       </div>
       {cartModal ? <AddedToCart /> : <></>}
       <ul className="flex flex-wrap gap-4 w-full justify-between items-center">
