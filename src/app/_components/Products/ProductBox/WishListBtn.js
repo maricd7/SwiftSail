@@ -1,11 +1,15 @@
 "use client";
 import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
-import { AddedToWishList } from "../../common";
+import { AddedToWishList,RemovedFromWishList } from "../../common";
 
 export const WishListBtn = ({ product }) => {
   const [iconColor, setIconColor] = useState("#808080");
   const [wishListModal, setWishListModal] = useState(false)
+  const [removedWishList,setRemovedWishList]= useState(false);
+
+
+
   useEffect(() => {
     const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const isProductInWishlist = existingWishlist.some(
@@ -18,7 +22,6 @@ export const WishListBtn = ({ product }) => {
   }, [product.id]);
 
   const handleClick = () => {
-    handleModal()
     const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const isProductInWishlist = existingWishlist.some(
       (item) => item.id === product.id
@@ -31,17 +34,26 @@ export const WishListBtn = ({ product }) => {
       );
       localStorage.setItem("wishlist", JSON.stringify(newWishList));
       setIconColor("#808080");
+      handleRemove()
       return;
     }
+    
     const updatedWishlist = [...existingWishlist, product];
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     setIconColor("#FF6961");
+    handleModal()
   };
 
   function handleModal() {
     setWishListModal(!wishListModal);
     setTimeout(() => {
       setWishListModal(false);
+    }, 3000);
+  }
+  function handleRemove() {
+    setRemovedWishList(!wishListModal);
+    setTimeout(() => {
+      setRemovedWishList(false);
     }, 3000);
   }
 
@@ -56,6 +68,7 @@ export const WishListBtn = ({ product }) => {
       style={{ color: iconColor }}
     />
     {wishListModal ? <AddedToWishList/> : <></>}
+    {removedWishList ? <RemovedFromWishList/> :<></>}
     </div>
   );
 };
