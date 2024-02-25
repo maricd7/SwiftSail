@@ -11,14 +11,14 @@ export const TopBox = ({ productparams }) => {
   const productImage = productparams.get("image");
   const productDiscount = productparams.get("discount");
   const productId = Number(productparams.get("id"));
-  const { addToCart } = useProductContext();
+  const { addToCart} = useProductContext();
  
   const addProductItemToContext = (id) => () => {
     addToCart(id)
   };
 
   return (
-    <div className="flex gap-8 mx-auto flex-col">
+    <div className="flex gap-8 mx-auto ">
       <img src={productImage} className="w-96 h-96" />
       <div className="max-w-lg w-lg">
         <h1 className="text-4xl font-bold">{productName}</h1>
@@ -30,7 +30,6 @@ export const TopBox = ({ productparams }) => {
         )}
         <CtaButton text="Add to cart" onClick={addProductItemToContext(productId)}/>
       </div>
-      <div>{productDescription}</div>
     </div>
   );
 };

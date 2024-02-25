@@ -19,7 +19,7 @@ export const ShopHeader = () => {
         />
         <SmallerHeaderSection
           text="BEST SELLING PHONES"
-          link="/categories/phone"
+          link="/categories/Phone"
           bg="rgb(186 230 253)"
           btnClr="rgb(2 132 199)"
           image="/static/xiaomi.png"

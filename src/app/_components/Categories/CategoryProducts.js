@@ -9,6 +9,7 @@ export default function CategoryProducts() {
 
   const { products } = useProductContext();
 
+
   return (
     <div className="flex flex-wrap gap-4 w-full justify-start items-center">
       {products.map((product) => {
