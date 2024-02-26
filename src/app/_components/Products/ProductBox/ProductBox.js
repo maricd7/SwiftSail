@@ -8,7 +8,7 @@ import ProductPrice from "./ProductPrice";
 import { WishListBtn } from "./WishListBtn";
 
 
-export const ProductBox = ({ product, handleModal }) => {
+export const ProductBox = ({ product, handleModal,handleRemoveProduct }) => {
   
 
   const productRef = "/products/" + product.id;
@@ -36,7 +36,7 @@ export const ProductBox = ({ product, handleModal }) => {
  
   return (
       <div className="rounded-xl max-w-md mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center relative  ">
-        <WishListBtn product={product}/>
+        <WishListBtn product={product} handleRemoveProduct={handleRemoveProduct}/>
         <Link
           href={{ pathname: productRef, query: product }}
           className="flex justify-center  flex-col  relative"

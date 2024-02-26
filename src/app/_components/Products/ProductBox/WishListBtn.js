@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
 import { AddedToWishList,RemovedFromWishList } from "../../common";
 
-export const WishListBtn = ({ product }) => {
+export const WishListBtn = ({ product,handleRemoveProduct }) => {
   const [iconColor, setIconColor] = useState("#808080");
   const [wishListModal, setWishListModal] = useState(false)
   const [removedWishList,setRemovedWishList]= useState(false);
@@ -33,6 +33,7 @@ export const WishListBtn = ({ product }) => {
         (item) => item.id !== product.id
       );
       localStorage.setItem("wishlist", JSON.stringify(newWishList));
+      handleRemoveProduct();
       setIconColor("#808080");
       handleRemove()
       return;
