@@ -13,6 +13,7 @@ export const Nav = () => {
         <div className="flex gap-4 items-center w-full justify-between">
           <Logo />
           {/* <NavCategories/> */}
+          <div className="gap-8 flex">
           <Link href="/wishlist" className="flex items-center gap-2">
             <Icon
               icon="ph:heart-straight-fill"
@@ -22,6 +23,8 @@ export const Nav = () => {
             />
             Wishlist
           </Link>
+          <Link href='/login'>Login</Link>
+          </div>
         </div>
       </nav>
     </ProductContextProvider>
