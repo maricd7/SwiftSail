@@ -14,6 +14,7 @@ function ProductPage({ params}) {
   }
   return (
     <ProductContextProvider>
+    <Nav/>
     <div className="mx-auto my-24 flex justify-center h-screen	">
       <TopBox productparams = {searchParams}/>
       <CartIcon toggleCart={toggleCart}/>

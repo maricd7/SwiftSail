@@ -12,18 +12,24 @@ export const Nav = () => {
 
   useEffect(() => {
     async function checkUser() {
-      const { data: user } = await supabase.auth.getUser();
-      if (user) {
-        setLogin(false);
+      const { data: user, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error('Error fetching user:', error.message);
+        return;
+      }
+      if (user && user.user?.id) {
+        setLogin(false); 
       } else {
         setLogin(true);
       }
+      console.log(user);
     }
     checkUser();
   }, []);
 
   async function signOut(){
     const { error } = await supabase.auth.signOut()
+    console.log('succes sing out')
     if(error){
       console.log('error signing out')
     }
