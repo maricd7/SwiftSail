@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <div>
       <ProductContextProvider>
+      <Nav/>
        <div className="mt-20">
         <ShopHeader/>
        {/* <Slider/> */}

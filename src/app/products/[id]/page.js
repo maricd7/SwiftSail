@@ -1,5 +1,5 @@
 'use client'
-import { TopBox } from "@/app/_components";
+import { Nav, TopBox } from "@/app/_components";
 import React, { useContext, useState } from "react";
 import { useSearchParams } from 'next/navigation'
 import CartIcon from "@/app/_components/Cart/CartIcon/CartIcon";

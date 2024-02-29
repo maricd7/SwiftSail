@@ -34,6 +34,8 @@ export const Products = () => {
 
     setProducts(sorted);
   }
+
+
   return (
     <div className="z-10  mt-10">
       <div className="w-full justify-between flex">
