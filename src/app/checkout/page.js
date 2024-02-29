@@ -24,7 +24,7 @@ const Checkout = () => {
   },[])
 
   return (
-    <div className='w-full h-cover flex items-start justify-center my-8 gap-8'>
+    <div className='w-full h-cover flex items-start justify-center  gap-8'>
       <CheckoutForm cart={cart} total_amount={total} quantity={quantity}/>
       <CheckoutProducts cart={cart} total={total}/>
     </div>

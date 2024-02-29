@@ -12,9 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='mt-24 bg-gray-50 mx-72 min-h-screen'>
+      <body className='mt-16 bg-gray-50 mx-72 min-h-screen'>
         {children}
-        {/* <Nav/> */}
+        {/* <Nav/>  removed from layout cause next layout rerender conflicts*/}
       </body>
       <Footer/>
     </html>

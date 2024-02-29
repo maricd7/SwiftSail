@@ -11,3 +11,4 @@ export * from "./WishListItems";
 export * from "./DiscountedItems";
 export * from "./LoginComponent";
 export * from "./RegisterComponent";
+export * from "./UserProfile";

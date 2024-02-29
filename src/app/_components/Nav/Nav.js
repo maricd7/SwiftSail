@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export const Nav = () => { 
   const[login,setLogin] = useState(true); 
-
+  const router = useRouter()
   useEffect(() => {
     async function checkUser() {
       const { data: user, error } = await supabase.auth.getUser();
@@ -17,8 +17,11 @@ export const Nav = () => {
         console.error('Error fetching user:', error.message);
         return;
       }
+
+      //check if user and user properties exists 
       if (user && user.user?.id) {
         setLogin(false); 
+       
       } else {
         setLogin(true);
       }
@@ -26,21 +29,12 @@ export const Nav = () => {
     }
     checkUser();
   }, []);
-
-  async function signOut(){
-    const { error } = await supabase.auth.signOut()
-    console.log('succes sing out')
-    if(error){
-      console.log('error signing out')
-    }
-    setLogin(true)
-  }
   return (
     <ProductContextProvider>
       <nav className="px-72 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0 fixed">
         <div className="flex gap-4 items-center w-full justify-between">
           <Logo />
-          <div className="gap-8 flex">
+          <div className="gap-8 flex items-center">
             <Link href="/wishlist" className="flex items-center gap-2">
               <Icon
                 icon="ph:heart-straight-fill"
@@ -50,7 +44,7 @@ export const Nav = () => {
               />
               Wishlist
             </Link>
-            {login ? <Link href='/login'>Login</Link> : <button onClick={signOut}>Logout</button>}
+            {login ? <Link href='/login'>Login</Link> : <Link href='/profile'><Icon className="cursor-pointer" icon="carbon:user-avatar" width="32" height="32"  style={{color: '#000'}} /></Link>}
           </div>
         </div>
       </nav>
