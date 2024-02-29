@@ -4,15 +4,15 @@ import { CtaButton, Heading, Input } from "../common";
 import supabase from "@/app/supabase";
 import Link from "next/link";
 
-export default function LoginComponent() {
-    const emailLoginRef = useRef();
-    const passwordLoginRef = useRef();
+export default function RegisterComponent() {
+    const emailRegisterRef = useRef();
+    const passwordRegisterRef = useRef();
 
     async function handleSubmit(e) {
         e.preventDefault();
       
-        const email = emailLoginRef.current.value;
-        const password = passwordLoginRef.current.value;
+        const email = emailRegisterRef.current.value;
+        const password = passwordRegisterRef.current.value;
       
         const { data, error } = await supabase.auth.signUp({
           email: email,
@@ -32,12 +32,12 @@ export default function LoginComponent() {
         onSubmit={handleSubmit}
         className="p-16 max-w-lg bg-white rounded-md flex flex-col gap-2"
       >
-        <Heading text="Login" />
-        <h2>Login in into your swiftsail account for more features.</h2>
-        <Input placeholder="Email" type="text" label="Email" ref={emailLoginRef}/>
-        <Input placeholder="Password" type="password" label="Password" ref={passwordLoginRef}/>
-        <CtaButton text="Login" type="submit" />
-        <span className="flex gap-2 items-center justify-center mt-4">Don't have an account?<Link href='/register' className='text-blue-500'>Sign Up</Link></span>
+        <Heading text="Register" />
+        <h2>Register your swiftsail account for more features.</h2>
+        <Input placeholder="Email" type="text" label="Email" ref={emailRegisterRef}/>
+        <Input placeholder="Password" type="password" label="Password" ref={passwordRegisterRef}/>
+        <CtaButton text="Register" type="submit" />
+        <span className="flex gap-2 items-center justify-center mt-4">Already have an account?<Link href='/login' className='text-blue-500'>Login</Link></span>
       </form>
       
     </div>
