@@ -3,8 +3,9 @@ import React, { useRef, useState } from "react";
 import { CtaButton, Heading, Input } from "../common";
 import supabase from "@/app/supabase";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 export default function LoginComponent() {
+    const router = useRouter()
     const emailLoginRef = useRef();
     const passwordLoginRef = useRef();
 
@@ -14,15 +15,16 @@ export default function LoginComponent() {
         const email = emailLoginRef.current.value;
         const password = passwordLoginRef.current.value;
       
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email: email,
           password: password,
         });
-      
+        
         if (error) {
           console.error("Error signing up:", error.message);
         } else {
           console.log("User signed up successfully:", data.user);
+          router.push('/')
         }
       }
 
