@@ -14,16 +14,6 @@ export default function UserProfile() {
     }
     getUserInfo();
   }, []);
-
-  //logout user
-  async function signOut() {
-    const { error } = await supabase.auth.signOut();
-    console.log("succes sing out");
-    if (error) {
-      console.log("error signing out");
-    }
-    setLogin(true);
-  }
   return (
     <div className="mt-24">
       <Heading text={userEmail} />
