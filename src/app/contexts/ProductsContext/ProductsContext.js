@@ -7,6 +7,7 @@ const ProductContext = createContext({
   cartCounter: null,
   categories:null,
   wishList:null,
+  boughtProducts:null,
   addToCart: () => [],
   removeFromCart: () => [],
   searchProducts: () => [],
@@ -22,8 +23,12 @@ export const ProductContextProvider = ({ children }) => {
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
   const [categories,setCategories] = useState([]);
-
-
+  const [boughtProducts,setBoughtProducts] = useState([]);
+  const [customers,setCustomers] = useState([])
+  const [currentUser,setCurrentUser] = useState('')
+  const [currentUserId,setCurrentUserId] = useState(null)
+  const [orders,setOrders]=useState([])
+  const [orderId,setOrderId]=useState(null)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -100,10 +105,66 @@ useEffect(()=>{
 },[products])
 
 
+//getting bought products (if current users mail === any mail in customers table)
+useEffect(() => { 
+  async function checkUser() {
+    const { data: user, error } = await supabase.auth.getUser();
+    setCurrentUser(user.user?.email)
+    if (error) {
+      console.error("Error fetching user:", error.message);
+      return;
+    }
+  }
+  checkUser()
+},[])
 
+useEffect(()=>{
+  async function fetchUsers() {
+    try {
+      const { data, error } = await supabase.from("customers").select("*")
+      if (error) {
+        throw error;
+      }
+      setCustomers(data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  }
+  fetchUsers();
+},[])
+
+const trenutniKorisnik = customers.filter(customer=>customer.email === currentUser)
+useEffect(()=>{
+  setCurrentUserId(trenutniKorisnik[0]?.id)
+},[customers])
+
+
+useEffect(()=>{
+  async function fetchOrders() {
+    try {
+      const { data, error } = await supabase.from("orders").select("*").eq('customer_id', currentUserId);
+      console.log(data)
+      setOrderId(data[0]?.id)
+      if (error) {
+        throw error;
+      }
+      setOrders(data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  }
+  fetchOrders();
+},[currentUserId])
+
+
+
+// console.log(orders, 'orderi');
+// console.log(currentUserId,'currentUserId')
+// console.log(orderId, 'orderID')
   const contextValue = {
     cart,
     products: products,
+    boughtProducts,
     categories,
     cartCounter,
     addToCart,
