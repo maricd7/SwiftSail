@@ -156,7 +156,22 @@ useEffect(()=>{
   fetchOrders();
 },[currentUserId])
 
-
+useEffect(()=>{
+  async function fetchProducts() {
+    try {
+      const { data, error } = await supabase.from("order_product").select("*").eq('order_id', orderId);
+      console.log(data)
+      setBoughtProducts([data[0].product_id])
+      if (error) {
+        throw error;
+      }
+      setOrders(data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  }
+  fetchProducts();
+},[orderId])
 
 // console.log(orders, 'orderi');
 // console.log(currentUserId,'currentUserId')
