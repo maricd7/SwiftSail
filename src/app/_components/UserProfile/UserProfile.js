@@ -18,7 +18,6 @@ export default function UserProfile() {
     <ProductContextProvider>
     <div className="mt-24">
       <Heading text={userEmail} />
-      <button className="text-red-500 mt-2 underline" onClick={()=>signOut()}>Sign Out</button>
       <div className="mt-24 flex gap-8">
         <BoughtProducts/>
         <div className="bg-white rounded-lg p-8 shadow-md">

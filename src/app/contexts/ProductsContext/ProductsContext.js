@@ -161,7 +161,11 @@ useEffect(()=>{
     try {
       const { data, error } = await supabase.from("order_product").select("*").eq('order_id', orderId);
       console.log(data)
-      setBoughtProducts([data[0].product_id])
+      const originalBought = []
+      data.forEach(dataSet=>{
+        originalBought.push(dataSet.product_id)
+      })
+      setBoughtProducts(originalBought)
       if (error) {
         throw error;
       }
