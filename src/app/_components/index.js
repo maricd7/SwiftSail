@@ -12,3 +12,4 @@ export * from "./DiscountedItems";
 export * from "./LoginComponent";
 export * from "./RegisterComponent";
 export * from "./UserProfile";
+export * from "./BoughtProducts";

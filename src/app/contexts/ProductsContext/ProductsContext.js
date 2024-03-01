@@ -173,9 +173,6 @@ useEffect(()=>{
   fetchProducts();
 },[orderId])
 
-// console.log(orders, 'orderi');
-// console.log(currentUserId,'currentUserId')
-// console.log(orderId, 'orderID')
   const contextValue = {
     cart,
     products: products,
