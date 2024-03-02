@@ -40,7 +40,7 @@ export const Nav = () => {
   }
   return (
     <ProductContextProvider>
-      <nav className="md:px-72 px-4 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0 fixed">
+      <nav className="lg:px-72 px-4 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0 fixed">
         <div className="flex gap-4 items-center w-full justify-between">
           <Logo />
           <div className="gap-8 flex items-center">
