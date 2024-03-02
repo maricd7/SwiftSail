@@ -40,11 +40,11 @@ export const Nav = () => {
   }
   return (
     <ProductContextProvider>
-      <nav className="px-72 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0 fixed">
+      <nav className="md:px-72 px-4 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0 fixed">
         <div className="flex gap-4 items-center w-full justify-between">
           <Logo />
           <div className="gap-8 flex items-center">
-            <Link href="/wishlist" className="flex items-center gap-2">
+            <Link href="/wishlist" className="hidden items-center gap-2 md:flex">
               <Icon
                 icon="ph:heart-straight-fill"
                 width="24"
@@ -54,7 +54,7 @@ export const Nav = () => {
               Wishlist
             </Link>
             {login ? (
-              <Link href="/login">Login</Link>
+              <Link href="/login" className="md:block hidden">Login</Link>
             ) : (
               <Link href="/profile" className="flex gap-4 items-center">
                 <Icon
@@ -73,8 +73,8 @@ export const Nav = () => {
                   onClick={()=>signOut()}
                 />
               </Link>
-              
             )}
+            <Icon className="md:hidden" icon="carbon:menu" width="24" height="24"  style={{color: '#000'}} />
           </div>
         </div>
       </nav>
