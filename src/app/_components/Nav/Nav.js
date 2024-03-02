@@ -8,6 +8,7 @@ import supabase from "@/app/supabase";
 import { useRouter } from "next/navigation";
 
 export const Nav = () => {
+  const [burger,setBurger] = useState(false)
   const [login, setLogin] = useState(true);
   const router = useRouter();
   useEffect(() => {
@@ -29,6 +30,7 @@ export const Nav = () => {
     checkUser();
   }, []);
 
+
   //logout user
   async function signOut() {
     const { error } = await supabase.auth.signOut();
@@ -38,6 +40,12 @@ export const Nav = () => {
     }
     setLogin(true);
   }
+
+  //burger toggle
+  function toggleBurger(){
+    setBurger(!burger)
+  }
+
   return (
     <ProductContextProvider>
       <nav className="lg:px-72 px-4 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0 fixed">
@@ -74,9 +82,31 @@ export const Nav = () => {
                 />
               </Link>
             )}
-            <Icon className="md:hidden" icon="carbon:menu" width="24" height="24"  style={{color: '#000'}} />
+            <Icon onClick={toggleBurger} className="md:hidden" icon="carbon:menu" width="24" height="24"  style={{color: '#000'}} />
           </div>
         </div>
+        {burger ? <div className="w-full bg-white h-screen absolute z-40 top-0 right-0 flex flex-col justify-center items-center  ">
+        <Icon
+            className="cursor-pointer absolute top-4 right-4"
+            icon="carbon:close"
+            onClick={toggleBurger}
+            color="black"
+            width="40"
+            height="40"
+          />
+          <ul className="flex flex-col gap-2 justify-center items-center">
+            <li><Link href="/login" >Login</Link></li>
+            <li> <Link href="/wishlist" className="items-center gap-2 flex">
+              <Icon
+                icon="ph:heart-straight-fill"
+                width="24"
+                height="24"
+                style={{ color: "#FF6961" }}
+              />
+              Wishlist
+            </Link></li>
+          </ul>
+        </div> : <></>}
       </nav>
     </ProductContextProvider>
   );
