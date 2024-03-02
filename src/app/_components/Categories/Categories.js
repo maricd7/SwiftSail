@@ -11,7 +11,7 @@ export const Categories = () => {
   return (
     <div className=' mt-10'>
          <Heading text='Browse products by category'/>
-         <ul className='flex gap-4 mt-4'>
+         <ul className='flex md:gap-4 gap-2 mt-4 flex-wrap'>
          {categories.map((category, index) => (
           <Category  key={index} category={category}/>
         ))}
