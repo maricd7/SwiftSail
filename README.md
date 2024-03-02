@@ -17,6 +17,11 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-# SwiftSail 
-SwiftSail is simple ecommerce app built using Next.js 14 . Styled with TailwindCSS. It uses formik and yup for form validation on checkout page. Products are fetched from custom supabase database which is edited using **[SwiftSailCMS](https://github.com/maricd7/SwiftSailCMS)**. 
-It has all the core ecommerce features such as all products page(home), cart,navigation,product page, checkout page etc. Cart and all its methods are  built using Context react hook (displaying cart products, removing from cart,adding products to cart). Checkout page has form validation built with [Formik](https://formik.org/) and [yup](https://www.npmjs.com/package/yup) which is used for defining schema validation. 
+# Introduction to SwiftSail
+SwiftSail is a comprehensive ecommerce platform  with features including cart management, checkout process, product browsing, category filtering, search functionality, user authentication, and wishlist management. Its kitted with its own custom built CMS (SwiftSailCMS) for fast and easy content management and tracking.
+
+#Technologies Used
+Next.js: A React framework for building server-side rendered and statically generated applications.
+Supabase: An open-source Firebase alternative. It provides a suite of tools for building scalable applications with built-in authentication, real-time database, and more.
+Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
+
