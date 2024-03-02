@@ -43,7 +43,7 @@ export const Products = () => {
         <FilterProducts selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>
       </div>
       {cartModal ? <AddedToCart /> : <></>}
-      <ul className="flex flex-wrap gap-4 w-full justify-between items-center">
+      <ul className="flex flex-wrap md:flex-row flex-col gap-4 w-full justify-between items-center">
         {products.map((product, index) => (
           <ProductBox product={product} key={index} handleModal={handleModal} />
         ))}

@@ -3,12 +3,11 @@ import { Logo } from '../Logo';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 text-white py-8 mt-8 px-72  ">
+    <footer className="bg-slate-950 text-white py-8 mt-8 md:px-72  px-4">
 
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center  md:flex-row flex-col">
       <Logo/>
-        <div>
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-4  md:flex-row ">
             <li>
               <a href="#" className="hover:text-gray-400">About</a>
             </li>
@@ -19,7 +18,6 @@ const Footer = () => {
               <a href="#" className="hover:text-gray-400">Contact</a>
             </li>
           </ul>
-        </div>
       </div>
     </footer>
   );
