@@ -2,11 +2,57 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # Installation
 ### To run the project locally, follow these steps:
-1.Clone the repository from GitHub.
-2.Navigate to the project directory.
-3.Install dependencies using npm or yarn.
-4.Set up environment variables for Supabase credentials. (contact my email for env).
-5.Run the development server.
+1. Clone the repository from GitHub.
+2. Navigate to the project directory.
+3. Install dependencies using npm or yarn.
+4. Set up environment variables for Supabase credentials. (contact my email for env).
+5. Run the development server.
+
+# Database Structure
+### Customers Table
+
+| Field       | Type        | Description           |
+|-------------|-------------|-----------------------|
+| id          | UUID        | Unique identifier     |
+| name        | Text        | Name                  |
+| email       | Text        | Email address         |
+| city        | Text        | City                  |
+| Postal Code | Text        | Users Postal Code     |
+| Phone number| Text        | Phone number          |
+| Address     | Text        | Users address         |
+| created_at  | TIMESTAMP   | Creation timestamp    |
+| updated_at  | TIMESTAMP   | Last update timestamp |
+
+### Products Table
+| Field       | Type        | Description           |
+|-------------|-------------|-----------------------|
+| id          | UUID        | Unique identifier     |
+| name        | Text        | Product name          |
+| description | Text        | Product description   |
+| price       | Text        | Product price         |
+| images      | Text        | Product image         |
+| category    | Text        | Product category      |
+| status      | bool        | Product category      |
+| stock       | numeric     | Product stock status  |
+| sold        | numeric     | How many are sold     |
+| discount    | numeric     | Discount in %         |
+
+### Orders Table
+| Field       | Type        | Description           |
+|-------------|-------------|-----------------------|
+| id          | UUID        | Unique identifier     |
+| customer_id | UUID        | Customer Id           |
+| value       | numeric     | Total order value     |
+| created_at  | TIMESTAMP   | Creation timestamp    |
+
+### Order Product Table
+| Field       | Type        | Description           |
+|-------------|-------------|-----------------------|
+| id          | UUID        | Unique identifier     |
+| order_id    | UUID        | Order  Id             |
+| product_id  | UUID        | Product  Id           |
+| quantity    | Numeric     | How many are ordered  |
+
 
 # Project Structure (App directory)
 ```plaintext
