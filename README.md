@@ -1,29 +1,42 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Installation
+### To run the project locally, follow these steps:
+1.Clone the repository from GitHub.
+2.Navigate to the project directory.
+3.Install dependencies using npm or yarn.
+4.Set up environment variables for Supabase credentials. (contact my email for env).
+5.Run the development server.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Project Structure (App directory)
+```plaintext
+.app
+├── _components/         # React components
+├── categories/          # Page
+├── checkout/            # Page
+├── login/               # Page
+├── register/            # Page
+├── profile/             # Page
+├── products/            # Page
+├── wishlist/            # Page
+├── contexts/            # useContext Hook file
+├── supabase.js          # Supabase config file
+├── layout.js            # Shared components layout
+├── page.js              # Home Page
+├── favicon.ico          # Favicon
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
 # Introduction to SwiftSail
 SwiftSail is a comprehensive ecommerce platform  with features including cart management, checkout process, product browsing, category filtering, search functionality, user authentication, and wishlist management. Its kitted with its own custom built CMS (SwiftSailCMS) for fast and easy content management and tracking.
 
 # Technologies Used
-Next.js: A React framework for building server-side rendered and statically generated applications.
-Supabase: An open-source Firebase alternative. It provides a suite of tools for building scalable applications with built-in authentication, real-time database, and more.
-Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
+### Next.js: 
+A React framework for building server-side rendered and statically generated applications.
+
+### Supabase: 
+An open-source Firebase alternative. It provides a suite of tools for building scalable applications with built-in authentication, real-time database, and more.
+
+### Tailwind CSS: 
+A utility-first CSS framework for rapidly building custom designs.
 
 # Features
 
