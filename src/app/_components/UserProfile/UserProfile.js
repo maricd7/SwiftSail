@@ -4,13 +4,18 @@ import React, { useEffect, useState } from "react";
 import { Heading } from "../common";
 import { ProductContextProvider } from "@/app/contexts/ProductsContext";
 import BoughtProducts from "../BoughtProducts/BoughtProducts";
+import { useRouter } from "next/navigation";
 
 export default function UserProfile() {
   const [userEmail, setUserEmail] = useState("");
+  const router = useRouter()
   useEffect(() => {
     async function getUserInfo() {
       const { data: user, error } = await supabase.auth.getUser();
       setUserEmail(user.user?.email);
+      if(!user.user){
+        router.push('/login')
+      }
     }
     getUserInfo();
   }, []);
