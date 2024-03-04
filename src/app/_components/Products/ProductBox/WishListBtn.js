@@ -33,7 +33,7 @@ export const WishListBtn = ({ product,handleRemoveProduct }) => {
         (item) => item.id !== product.id
       );
       localStorage.setItem("wishlist", JSON.stringify(newWishList));
-      handleRemoveProduct();
+      // handleRemoveProduct();
       setIconColor("#808080");
       handleRemove()
       return;
@@ -62,7 +62,7 @@ export const WishListBtn = ({ product,handleRemoveProduct }) => {
   }
 
   return (
-    <div>
+    <div className="z-20">
       <Icon
       className="absolute left-2 top-2 z-20"
       onClick={() => handleClick()}
