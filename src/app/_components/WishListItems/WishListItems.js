@@ -4,7 +4,6 @@ import { ProductBox } from "../Products/ProductBox";
 
 export default function WishListItems() {
   const [wishList, setWishList] = useState([]);
-
   useEffect(() => {
     setWishList(JSON.parse(localStorage.getItem("wishlist")));
   }, []);
@@ -15,7 +14,7 @@ export default function WishListItems() {
   return (
     <div className="flex flex-wrap gap-4  justify-start items-center h-full">
       {wishList.map((wish, index) => (
-        <ProductBox key={index} product={wish} handleRemoveProduct={handleRemoveProduct}/>
+        <ProductBox key={index} product={wish} handleRemoveProduct={handleRemoveProduct} setWishList={setWishList}/>
       ))}
     </div>
   );

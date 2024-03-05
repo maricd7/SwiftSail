@@ -4,6 +4,7 @@ import { CtaButton } from "../../common";
 import { useProductContext } from "@/app/contexts/ProductsContext";
 import { useRouter, useSearchParams,useParams  } from 'next/navigation';
 import ProductPrice from "../../Products/ProductBox/ProductPrice";
+import OutOfStock from "../../OutOfStock/OutOfStock";
 
 export const TopBox = ({ productparams }) => {
   const {products} = useProductContext()

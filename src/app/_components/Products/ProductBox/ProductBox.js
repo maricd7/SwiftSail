@@ -8,7 +8,7 @@ import ProductPrice from "./ProductPrice";
 import { WishListBtn } from "./WishListBtn";
 import OutOfStock from "../../OutOfStock/OutOfStock";
 
-export const ProductBox = ({ product, handleModal, handleRemoveProduct }) => {
+export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishList }) => {
   const productRef = "/products/" + product.id;
 
   const { addToCart } = useProductContext();
@@ -44,6 +44,7 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct }) => {
       <WishListBtn
         product={product}
         handleRemoveProduct={handleRemoveProduct}
+        setWishList={setWishList}
       />
       <Link
         href={{ pathname: productRef}}
