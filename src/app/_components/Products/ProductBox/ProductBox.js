@@ -46,7 +46,7 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct }) => {
         handleRemoveProduct={handleRemoveProduct}
       />
       <Link
-        href={{ pathname: productRef, query: product }}
+        href={{ pathname: productRef}}
         className="flex justify-center  flex-col  relative"
       >
         {product.discount ? (
