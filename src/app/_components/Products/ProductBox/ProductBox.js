@@ -40,7 +40,7 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishLi
   }, [product]);
 
   return (
-    <div className="rounded-xl max-w-md mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center relative  ">
+    <div className="rounded-xl w-60 mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center relative  ">
       <WishListBtn
         product={product}
         handleRemoveProduct={handleRemoveProduct}
@@ -48,7 +48,7 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishLi
       />
       <Link
         href={{ pathname: productRef}}
-        className="flex justify-center  flex-col  relative"
+        className="flex justify-center  flex-col  relative items-center"
       >
         {product.discount ? (
           <ProductDiscount discount={product.discount} />
@@ -57,7 +57,7 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishLi
         )}
         <ProductBoxImage product={product} />
         <div className="text-left">
-          <h2 className="mt-4 mb-2 text-xl">{product.name}</h2>
+          <h2 className="mt-4 mb-2 text-md h-20 w-3/4">{product.name}</h2>
           <CategoryTag product={product} />
           <p className="text-gray-400 mt-2 h-20" style={{ maxWidth: "160px" }}>
             {productDescription}

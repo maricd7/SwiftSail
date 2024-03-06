@@ -35,19 +35,22 @@ export const Products = () => {
     setProducts(sorted);
   }
 
-
   return (
-    <div className="z-10  mt-10">
+    <div className="z-10 mt-10">
       <div className="w-full justify-between flex md:flex-row flex-col gap-2 md:gap-0">
         <Heading text="Our international top sellers" />
         <FilterProducts selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>
       </div>
-      {cartModal ? <AddedToCart /> : <></>}
-      <ul className="flex flex-wrap md:flex-row flex-col gap-4 w-full justify-between items-center">
-        {products.map((product, index) => (
-          <ProductBox product={product} key={index} handleModal={handleModal} />
-        ))}
-      </ul>
+      {cartModal && <AddedToCart />}
+      {products ? (
+        <ul className="flex flex-wrap md:flex-row flex-col gap-4 w-full justify-between items-center">
+          {products.map((product, index) => (
+            <ProductBox product={product} key={index} handleModal={handleModal} />
+          ))}
+        </ul>
+      ) : (
+        <div>Loading</div>
+      )}
     </div>
   );
 };

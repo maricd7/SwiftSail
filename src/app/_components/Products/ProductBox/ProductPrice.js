@@ -6,7 +6,7 @@ export default function ProductPrice({ price, discount }) {
       {discount ? (
         <>
           <span className="mt-2 text-xl font-bold">
-            ${price * (1 - discount / 100)}
+            ${price * (1 - discount / 100).toFixed(2)}
           </span>
           <p className="mt-2 text-xl text-gray-500 line-through">
             ${price}
