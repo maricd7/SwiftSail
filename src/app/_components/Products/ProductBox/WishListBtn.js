@@ -2,13 +2,9 @@
 import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
 import { AddedToWishList,RemovedFromWishList } from "../../common";
+import useWishList from "@/app/custom-hooks/useWishList";
 
-export const WishListBtn = ({ product,handleRemoveProduct,setWishList }) => {
-  const [iconColor, setIconColor] = useState("#808080");
-  const [wishListModal, setWishListModal] = useState(false)
-  const [removedWishList,setRemovedWishList]= useState(false);
-
-
+export const WishListBtn = ({ product,handleRemoveProduct,setWishList,iconColor,setIconColor,wishListModal,setWishListModal,removedWishList,setRemovedWishList}) => {
 
   useEffect(() => {
     const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -22,45 +18,7 @@ export const WishListBtn = ({ product,handleRemoveProduct,setWishList }) => {
   }, [product.id]);
 
   const handleClick = () => {
-    const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    const isProductInWishlist = existingWishlist.some(
-      (item) => item.id === product.id
-    );
-
-    //check if product exists in wishlist
-    if (isProductInWishlist) {
-      const newWishList = existingWishlist.filter(
-        (item) => item.id !== product.id
-      );
-      localStorage.setItem("wishlist", JSON.stringify(newWishList));
-
-      // handleRemoveProduct();
-      setIconColor("#808080");
-      handleRemove()
-      setWishList(newWishList)
-      return;
-    }
-    
-    const updatedWishlist = [...existingWishlist, product];
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-    setIconColor("#FF6961");
-    handleModal()
-  };
-
-  // modal for adding to wishlist
-  function handleModal() {
-    setWishListModal(!wishListModal);
-    setTimeout(() => {
-      setWishListModal(false);
-    }, 1500);
-  }
-
-  //modal for removing from wishlist
-  function handleRemove() {
-    setRemovedWishList(!wishListModal);
-    setTimeout(() => {
-      setRemovedWishList(false);
-    }, 1500);
+    useWishList(product,setIconColor,setWishList,wishListModal,removedWishList,setWishListModal,setRemovedWishList)
   }
 
   return (

@@ -8,8 +8,18 @@ import ProductPrice from "./ProductPrice";
 import { WishListBtn } from "./WishListBtn";
 import OutOfStock from "../../OutOfStock/OutOfStock";
 
-export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishList }) => {
+export const ProductBox = ({
+  product,
+  handleModal,
+  handleRemoveProduct,
+  setWishList,
+}) => {
   const productRef = "/products/" + product.id;
+
+  //wishlist params
+  const [iconColor, setIconColor] = useState("#808080");
+  const [wishListModal, setWishListModal] = useState(false);
+  const [removedWishList, setRemovedWishList] = useState(false);
 
   const { addToCart } = useProductContext();
   const addProductItemToContext = (id) => () => {
@@ -24,7 +34,6 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishLi
 
   function checkDescription() {
     if (productDescription.length >= 56) {
-      console.log(productDescription.slice(0, 56 - 3) + "&hellip;");
       setProductDescription(product.description.slice(0, 56 - 3) + "...");
     } else {
       setProductDescription(productDescription);
@@ -45,9 +54,15 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishLi
         product={product}
         handleRemoveProduct={handleRemoveProduct}
         setWishList={setWishList}
+        iconColor={iconColor}
+        setIconColor={setIconColor}
+        wishListModal={wishListModal}
+        setWishListModal={setWishListModal}
+        removedWishList={removedWishList}
+        setRemovedWishList={setRemovedWishList}
       />
       <Link
-        href={{ pathname: productRef}}
+        href={{ pathname: productRef }}
         className="flex justify-center  flex-col  relative items-center"
       >
         {product.discount ? (
@@ -64,15 +79,25 @@ export const ProductBox = ({ product, handleModal, handleRemoveProduct,setWishLi
           </p>
           <ProductPrice price={product.price} discount={product.discount} />
         </div>
-        {stock ? (
-          <OutOfStock />
+      </Link>
+      {stock ? (
+          <OutOfStock
+            product={product}
+            handleRemoveProduct={handleRemoveProduct}
+            setWishList={setWishList}
+            iconColor={iconColor}
+            setIconColor={setIconColor}
+            wishListModal={wishListModal}
+            setWishListModal={setWishListModal}
+            removedWishList={removedWishList}
+            setRemovedWishList={setRemovedWishList}
+          />
         ) : (
           <CtaButton
             text="Add to Cart"
             onClick={addProductItemToContext(product.id)}
           />
         )}
-      </Link>
       {stock}
     </div>
   );
