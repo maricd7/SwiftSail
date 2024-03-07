@@ -9,7 +9,7 @@ export default function WishListItems() {
   return (
     <div className="flex flex-wrap gap-4  justify-start items-center h-full">
       {wishlist.map((wish, index) => (
-        <ProductBox key={index} product={wish} handleRemoveProduct={handleRemoveProduct} setWishList={setWishList}/>
+        <ProductBox key={index} product={wish}/>
       ))}
     </div>
   );
