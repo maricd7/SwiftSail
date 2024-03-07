@@ -21,7 +21,7 @@ export const ProductBox = ({
   const [wishListModal, setWishListModal] = useState(false);
   const [removedWishList, setRemovedWishList] = useState(false);
 
-  const { addToCart} = useProductContext();
+  const { addToCart,wishlistIcon} = useProductContext();
   const addProductItemToContext = (id) => () => {
     addToCart(id);
     handleModal();
@@ -53,6 +53,7 @@ export const ProductBox = ({
     <div className="rounded-xl w-60 mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center relative  ">
       <WishListBtn
         product={product}
+        wishlistIcon={wishlistIcon}
       />
       <Link
         href={{ pathname: productRef }}

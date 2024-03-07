@@ -9,6 +9,7 @@ const ProductContext = createContext({
   categories:null,
   wishList:null,
   boughtProducts:null,
+  wishlistIcon:'',
   addToCart: () => [],
   removeFromCart: () => [],
   searchProducts: () => [],
@@ -16,6 +17,7 @@ const ProductContext = createContext({
   setProducts:()=>[],
   setWishList:()=>[],
   addToWishList:()=>[],
+  removeFromWishlist:()=>[],
 });
 
 
@@ -33,6 +35,7 @@ export const ProductContextProvider = ({ children }) => {
   const [orderId,setOrderId]=useState(null)
   const [wishlist,setWishlist] = useState([]);
   const [existingWishlist,setExistingWishList] = useState([])
+  const [wishlistIcon,setWishlistIcon] = useState('#808080')
 
 
   useEffect(() => {
@@ -193,17 +196,16 @@ useEffect(()=>{
   
   function addToWishList(product) {
     console.log('added to w-list');
-    const existingProduct = wishlist.find(item => item.id === product.id);
-  
-    if (existingProduct) {
-      const newWishList = wishlist.filter(item => item.id !== existingProduct.id);
-      localStorage.setItem("wishlist", JSON.stringify(newWishList));
-      setWishlist(newWishList);
-    } else {
-      const updatedWishlist = [...wishlist, product];
-      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-      setWishlist(updatedWishlist);
-    }
+    const updatedWishlist = [...wishlist, product];
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    setWishlist(updatedWishlist);
+  }
+  function removeFromWishlist(productId){
+    const existingProduct = wishlist.find(item => item.id === productId);
+    const newWishList = wishlist.filter(item => item.id !== existingProduct.id);
+    localStorage.setItem("wishlist", JSON.stringify(newWishList));
+    setWishlist(newWishList);
+    setWishlistIcon('#080808')
   }
 
 console.log(wishlist, 'lista')
@@ -216,9 +218,11 @@ console.log(wishlist, 'lista')
     boughtProducts,
     categories,
     wishlist,
+    wishlistIcon,
     cartCounter,
     addToCart,
     addToWishList,
+    removeFromWishlist,
     removeFromCart,
     searchProducts,
     setCart,

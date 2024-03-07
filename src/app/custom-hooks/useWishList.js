@@ -38,8 +38,6 @@ function useWishList(
 
 
 
-
-
   // modal for adding to wishlist
   function handleModal() {
     setWishListModal(!wishListModal);
