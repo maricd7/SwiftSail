@@ -7,6 +7,7 @@ import { Icon } from "@iconify/react";
 import supabase from "@/app/supabase";
 import { useRouter } from "next/navigation";
 
+
 export const Nav = () => {
   const [burger,setBurger] = useState(false)
   const [login, setLogin] = useState(true);

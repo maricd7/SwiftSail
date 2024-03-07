@@ -5,6 +5,7 @@ import {useState } from "react";
 import { SideCart } from "./_components/Cart";
 import { ProductContextProvider } from "./contexts/ProductsContext";
 import CartIcon from "./_components/Cart/CartIcon/CartIcon";
+import Disclaimer from "./_components/Disclaimer/Disclaimer";
 
 export default function Home() {
   const [cartOpened, setCartOpened] = useState(false);

@@ -14,3 +14,4 @@ export * from "./RegisterComponent";
 export * from "./UserProfile";
 export * from "./BoughtProducts";
 export * from "./OutOfStock";
+export * from "./Disclaimer";

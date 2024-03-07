@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Nav } from './_components'
 import Footer from './_components/Footer/Footer'
+import Disclaimer from './_components/Disclaimer/Disclaimer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className='mt-16 bg-gray-50 lg:mx-72 mx-4 min-h-screen'>
+        <Disclaimer/>
         {children}
         {/* <Nav/>  removed from layout cause next layout rerender conflicts*/}
       </body>
