@@ -1,6 +1,6 @@
 'use client'
 import { Nav, TopBox } from "@/app/_components";
-import React, { useContext, useState } from "react";
+import React, { Suspense, useContext, useState } from "react";
 import { useSearchParams } from 'next/navigation'
 import CartIcon from "@/app/_components/Cart/CartIcon/CartIcon";
 import { SideCart } from "@/app/_components/Cart";
@@ -16,7 +16,9 @@ function ProductPage({ params}) {
     <ProductContextProvider>
     <Nav/>
     <div className="mx-auto my-24 flex justify-center h-screen	">
+    <Suspense fallback={<div>Loading...</div>}>
       <TopBox productparams = {searchParams}/>
+    </Suspense>
       <CartIcon toggleCart={toggleCart}/>
      {cartOpened ?  <SideCart toggleCart={toggleCart}/>  : <></>} 
     </div>
