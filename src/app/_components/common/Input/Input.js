@@ -23,3 +23,6 @@ export const Input = React.forwardRef(({ placeholder, label, type, name, onChang
     </div>
   );
 });
+
+
+Input.displayName = 'Input';

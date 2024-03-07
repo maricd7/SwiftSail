@@ -6,7 +6,7 @@ import { AddedToCart, Heading } from "../common";
 import { FilterProducts } from "./FilterProducts";
 
 export const Products = () => {
-  const { products, setProducts } = useProductContext();
+  const { products, setProducts,wishList,addToWishList } = useProductContext();
   const [cartModal, toggleCartModal] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("Filter Products");
 

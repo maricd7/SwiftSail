@@ -34,6 +34,12 @@ function useWishList(
   setIconColor("#FF6961");
   handleModal();
 
+
+
+
+
+
+
   // modal for adding to wishlist
   function handleModal() {
     setWishListModal(!wishListModal);

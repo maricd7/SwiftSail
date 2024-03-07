@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import supabase from "@/app/supabase";
+import Wishlist from "@/app/wishlist/page";
 
 const ProductContext = createContext({
   products: null,
@@ -14,6 +15,7 @@ const ProductContext = createContext({
   setCart:()=>[],
   setProducts:()=>[],
   setWishList:()=>[],
+  addToWishList:()=>[],
 });
 
 
@@ -29,6 +31,10 @@ export const ProductContextProvider = ({ children }) => {
   const [currentUserId,setCurrentUserId] = useState(null)
   const [orders,setOrders]=useState([])
   const [orderId,setOrderId]=useState(null)
+  const [wishlist,setWishlist] = useState([]);
+  const [existingWishlist,setExistingWishList] = useState([])
+
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -177,13 +183,42 @@ useEffect(()=>{
   fetchProducts();
 },[orderId])
 
+
+
+  //wishlist logic 
+  useEffect(() => {
+    const existingWishList = JSON.parse(localStorage.getItem("wishlist")) || [];
+    setWishlist(existingWishList);
+  }, []);
+  
+  function addToWishList(product) {
+    console.log('added to w-list');
+    const existingProduct = wishlist.find(item => item.id === product.id);
+  
+    if (existingProduct) {
+      const newWishList = wishlist.filter(item => item.id !== existingProduct.id);
+      localStorage.setItem("wishlist", JSON.stringify(newWishList));
+      setWishlist(newWishList);
+    } else {
+      const updatedWishlist = [...wishlist, product];
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      setWishlist(updatedWishlist);
+    }
+  }
+
+console.log(wishlist, 'lista')
+
+
+
   const contextValue = {
     cart,
     products: products,
     boughtProducts,
     categories,
+    wishlist,
     cartCounter,
     addToCart,
+    addToWishList,
     removeFromCart,
     searchProducts,
     setCart,

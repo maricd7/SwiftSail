@@ -1,26 +1,15 @@
 "use client";
+import { useProductContext } from "@/app/contexts/ProductsContext";
 import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
-import { AddedToWishList,RemovedFromWishList } from "../../common";
-import useWishList from "@/app/custom-hooks/useWishList";
 
-export const WishListBtn = ({ product,handleRemoveProduct,setWishList,iconColor,setIconColor,wishListModal,setWishListModal,removedWishList,setRemovedWishList}) => {
+export const WishListBtn = ({ product}) => {
 
-  useEffect(() => {
-    const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    const isProductInWishlist = existingWishlist.some(
-      (item) => item.id === product.id
-    );
+  const {addToWishList} = useProductContext() 
 
-    if (isProductInWishlist) {
-      setIconColor("#FF6961");
-    }
-  }, [product.id]);
-
-  const handleClick = () => {
-    useWishList(product,setIconColor,setWishList,wishListModal,removedWishList,setWishListModal,setRemovedWishList)
+  function handleClick(){
+    addToWishList(product)
   }
-
   return (
     <div className="z-20">
       <Icon
@@ -29,10 +18,10 @@ export const WishListBtn = ({ product,handleRemoveProduct,setWishList,iconColor,
       icon="ph:heart-straight-fill"
       width="24"
       height="24"
-      style={{ color: iconColor }}
+      style={{ color: '#000' }}
     />
-    {wishListModal ? <AddedToWishList/> : <></>}
-    {removedWishList ? <RemovedFromWishList/> :<></>}
+    {/* {wishListModal ? <AddedToWishList/> : <></>}
+    {removedWishList ? <RemovedFromWishList/> :<></>} */}
     </div>
   );
 };
