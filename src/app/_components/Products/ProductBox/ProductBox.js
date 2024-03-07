@@ -77,14 +77,6 @@ export const ProductBox = ({
       {stock ? (
           <OutOfStock
             product={product}
-            handleRemoveProduct={handleRemoveProduct}
-            setWishList={setWishList}
-            iconColor={iconColor}
-            setIconColor={setIconColor}
-            wishListModal={wishListModal}
-            setWishListModal={setWishListModal}
-            removedWishList={removedWishList}
-            setRemovedWishList={setRemovedWishList}
           />
         ) : (
           <CtaButton
