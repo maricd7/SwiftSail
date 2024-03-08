@@ -39,7 +39,7 @@ export default function LoginComponent() {
         <Input placeholder="Email" type="text" label="Email" ref={emailLoginRef}/>
         <Input placeholder="Password" type="password" label="Password" ref={passwordLoginRef}/>
         <CtaButton text="Login" type="submit" />
-        <span className="flex gap-2 items-center justify-center mt-4">Don`&apos`t have an account?<Link href='/register' className='text-blue-500'>Sign Up</Link></span>
+        <span className="flex gap-2 items-center justify-center mt-4">Don&rsquo;t have an account?<Link href='/register' className='text-blue-500'>Sign Up</Link></span>
       </form>
       
     </div>
