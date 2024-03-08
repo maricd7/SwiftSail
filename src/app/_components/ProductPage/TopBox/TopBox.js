@@ -7,7 +7,7 @@ import ProductPrice from "../../Products/ProductBox/ProductPrice";
 import OutOfStock from "../../OutOfStock/OutOfStock";
 
 export const TopBox = ({ productparams }) => {
-  const {products} = useProductContext()
+  const {products,addToCart} = useProductContext()
   const params = useParams()
   const [product,setProduct] = useState(null)
 

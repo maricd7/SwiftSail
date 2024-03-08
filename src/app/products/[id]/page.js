@@ -7,22 +7,29 @@ import { SideCart } from "@/app/_components/Cart";
 import { ProductContextProvider } from "@/app/contexts/ProductsContext";
 
 function ProductPage({ params}) {
-  const searchParams = useSearchParams()
   const [cartOpened, setCartOpened] = useState(false);
   function toggleCart() {
     setCartOpened(!cartOpened);
   }
+
   return (
     <ProductContextProvider>
-    <Nav/>
-    <div className="mx-auto my-24 flex justify-center h-screen	">
-    <Suspense fallback={<div>Loading...</div>}>
-      <TopBox productparams = {searchParams}/>
-    </Suspense>
-      <CartIcon toggleCart={toggleCart}/>
-     {cartOpened ?  <SideCart toggleCart={toggleCart}/>  : <></>} 
-    </div>
+      <Nav/>
+      <div className="mx-auto my-24 flex justify-center h-screen	">
+        <Suspense fallback={<div>Loading...</div>}>
+          <TopBoxWrapper toggleCart={toggleCart}/>
+        </Suspense>
+        <CartIcon toggleCart={toggleCart}/>
+        {cartOpened ?  <SideCart toggleCart={toggleCart}/>  : <></>} 
+      </div>
     </ProductContextProvider>
   );
 }
+
+function TopBoxWrapper({ toggleCart }) {
+  const searchParams = useSearchParams();
+  return <TopBox productparams={searchParams} />;
+}
+
 export default ProductPage;
+
