@@ -42,8 +42,8 @@ export const WishListBtn = ({ product }) => {
         height="24"
         style={{ color: wishlistIcon }}
       />
-      <AddedToWishList/>
-      <RemovedFromWishList/>
+      {wishListModal ? <AddedToWishList/> : <></>}
+      {removedWishList ? <RemovedFromWishList/> : <></>}
     </div>
   );
 };
