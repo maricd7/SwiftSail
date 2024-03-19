@@ -5,6 +5,7 @@ import { Heading } from "../common";
 import { ProductContextProvider } from "@/app/contexts/ProductsContext";
 import BoughtProducts from "../BoughtProducts/BoughtProducts";
 import { useRouter } from "next/navigation";
+import WishListItems from "../WishListItems/WishListItems";
 
 export default function UserProfile() {
   const [userEmail, setUserEmail] = useState("");
@@ -23,10 +24,11 @@ export default function UserProfile() {
     <ProductContextProvider>
     <div className="mt-24">
       <Heading text={userEmail} />
-      <div className="mt-24 flex gap-8">
+      <div className="mt-24 flex md:flex-row flex-col gap-8">
         <BoughtProducts/>
         <div className="bg-white rounded-lg p-8 shadow-md">
           <h2 className="text-2xl font-bold">Your Wishlist</h2>
+          <WishListItems/>
         </div>
       </div>
     </div>

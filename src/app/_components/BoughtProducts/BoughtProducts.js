@@ -7,10 +7,19 @@ import React, { useEffect, useState } from 'react'
 export default function BoughtProducts() {
     const {products,boughtProducts} = useProductContext()
     const [filteredProducts,setFilteredProducts]= useState([])
+    console.log(boughtProducts,         'adasds')
     useEffect(()=>{
+        products.forEach(product=>{
+            console.log(product, boughtProducts)
+            if(boughtProducts.includes(product.id)){
+                console.log(true)
+            }else{
+                console.log(false)
+            }
+        })
         setFilteredProducts(products.filter(obj => boughtProducts.includes(obj.id)));
     },[products,boughtProducts])
-    console.log(filteredProducts)
+    console.log(filteredProducts, 'proizvodi')
   return (
     <div className="bg-white rounded-lg p-8 shadow-md flex flex-col gap-8">
         <h2 className="text-2xl font-bold">Bought Products</h2>
