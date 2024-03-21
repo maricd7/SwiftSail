@@ -15,3 +15,4 @@ export * from "./UserProfile";
 export * from "./BoughtProducts";
 export * from "./OutOfStock";
 export * from "./Disclaimer";
+export * from "./EmailTemplate";
