@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Categories, Nav, Products, ShopHeader, Slider } from "./_components";
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import { SideCart } from "./_components/Cart";
 import { ProductContextProvider } from "./contexts/ProductsContext";
 import CartIcon from "./_components/Cart/CartIcon/CartIcon";
@@ -14,9 +14,11 @@ export default function Home() {
   function toggleCart() {
     setCartOpened(!cartOpened);
   }
+ useEffect(()=>{
   setTimeout(()=>{
     setNewsLetter(true)
   },3000)
+ },[])
   return (
     <div>
       <ProductContextProvider>
