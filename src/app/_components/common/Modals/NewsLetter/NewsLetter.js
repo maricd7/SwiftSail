@@ -4,7 +4,7 @@ import { Input } from '../../Input'
 import { CtaButton } from '../../CtaButton'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
-import { POST } from '@/app/api/send/route'
+// import { POST } from '@/app/api/send/route'
 
 export default function NewsLetter({setNewsLetter}) {
   const [email, setEmail] = useState('');
@@ -13,19 +13,19 @@ export default function NewsLetter({setNewsLetter}) {
     setEmail(e.target.value)
   }
 
-  async function handleSubscribe() {
-    try {
-      const subject = 'Subscription Confirmation';
-      const response = await POST(email, subject);
-      if (response.ok) {
-        console.log('Email subscription successful');
-      } else {
-        console.error('Failed to subscribe:', await response.text());
-      }
-    } catch (error) {
-      console.error('Error subscribing:', error);
-    }
-  }
+  // async function handleSubscribe() {
+  //   try {
+  //     const subject = 'Subscription Confirmation';
+  //     const response = await POST(email, subject);
+  //     if (response.ok) {
+  //       console.log('Email subscription successful');
+  //     } else {
+  //       console.error('Failed to subscribe:', await response.text());
+  //     }
+  //   } catch (error) {
+  //     console.error('Error subscribing:', error);
+  //   }
+  // }
 
   return (
     <div className='absolute rounded-lg z-50 bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg flex gap-4'>
@@ -36,7 +36,7 @@ export default function NewsLetter({setNewsLetter}) {
         <p className='text-lg text-center'>Unlock exclusive deals and updates! Subscribe now for the latest trends and promotions straight to your inbox.</p>
         <div>
             <Input onChange={(e)=>handleOnChange(e)} placeholder='Your email'/>
-            <CtaButton onClick={()=>handleSubscribe()} text='Subscribe'/>
+            <CtaButton  text='Subscribe'/>
         </div>
       </div>
     </div>
