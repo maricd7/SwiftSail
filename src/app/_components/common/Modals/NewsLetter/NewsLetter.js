@@ -28,7 +28,7 @@ export default function NewsLetter({setNewsLetter}) {
   // }
 
   return (
-    <div className='absolute rounded-lg z-50 bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg flex gap-4'>
+    <div className='absolute rounded-lg z-50 bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lgflex lg:flex-row flex-col flex  gap-4'>
         <Image width={500} height={500} alt='Newsletter image' src='https://images.unsplash.com/photo-1573855619003-97b4799dcd8b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
       <div className='p-16'>
       <Icon onClick={()=>{setNewsLetter(false)}} className='absolute top-4 right-4 cursor-pointer' icon="carbon:close" width="24" height="24"  style={{color: '#000'}} />
