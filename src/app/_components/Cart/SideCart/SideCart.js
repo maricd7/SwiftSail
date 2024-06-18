@@ -4,11 +4,9 @@ import { useProductContext } from "@/app/contexts/ProductsContext";
 import { CartProduct } from "../CartProduct";
 import { CtaButton } from "../../common";
 import Link from "next/link";
-export const SideCart = ({toggleCart}) => {
-  const { cart, removeFromCart,quanitySetter } = useProductContext();
-  useEffect(() => {
-    console.log("deki", cart);
-  }, [cart]);
+export const SideCart = ({ toggleCart }) => {
+  const { cart, removeFromCart, quanitySetter } = useProductContext();
+  useEffect(() => {}, [cart]);
 
   return (
     <div>
@@ -23,8 +21,18 @@ export const SideCart = ({toggleCart}) => {
             height="40"
           />
           {!cart.length && <div>Your Cart is empty</div>}
-          {cart && cart.map((item, index) => <CartProduct product={item} onClick={()=>removeFromCart(item.id)} key={index} onChange={quanitySetter}/>)}
-          <Link href='/checkout'><CtaButton text='Go to checkout'/></Link>
+          {cart &&
+            cart.map((item, index) => (
+              <CartProduct
+                product={item}
+                onClick={() => removeFromCart(item.id)}
+                key={index}
+                onChange={quanitySetter}
+              />
+            ))}
+          <Link href="/checkout">
+            <CtaButton text="Go to checkout" />
+          </Link>
         </div>
       </div>
     </div>

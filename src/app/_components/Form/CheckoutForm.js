@@ -7,17 +7,15 @@ import supabase from "@/app/supabase";
 
 export const CheckoutForm = ({ total_amount, cart }) => {
   const [formData, setFormData] = useState({});
-  const [products,setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
-  useEffect(()=>{
-    async function getData(){
-      const {data} = await supabase.from('products').select('*')
-    setProducts(data)
-   
+  useEffect(() => {
+    async function getData() {
+      const { data } = await supabase.from("products").select("*");
+      setProducts(data);
     }
-    getData()
-  },[])
-  console.log(products)
+    getData();
+  }, []);
 
   //handle submit
   async function handleSubmit(e) {
@@ -35,14 +33,11 @@ export const CheckoutForm = ({ total_amount, cart }) => {
     let order = orderData.data[0];
 
     cart.forEach(async (el) => {
-      await supabase
-        .from("order_product")
-        .insert({
-          order_id: order.id,
-          product_id: el.id,
-          quantity: el.quantity,
-        });
-
+      await supabase.from("order_product").insert({
+        order_id: order.id,
+        product_id: el.id,
+        quantity: el.quantity,
+      });
 
       //update stock
       const productToUpdate = products.find((product) => product.id === el.id);
@@ -50,7 +45,7 @@ export const CheckoutForm = ({ total_amount, cart }) => {
         const updatedStock = productToUpdate.stock - el.quantity;
         await supabase
           .from("products")
-          .update({ stock: updatedStock , sold:el.quantity})
+          .update({ stock: updatedStock, sold: el.quantity })
           .eq("id", el.id);
       }
     });

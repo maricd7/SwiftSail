@@ -6,42 +6,43 @@ const ProductContext = createContext({
   products: null,
   cart: null,
   cartCounter: null,
-  categories:null,
-  wishList:null,
-  boughtProducts:null,
-  wishlistIcon:'',
+  categories: null,
+  wishList: null,
+  boughtProducts: null,
+  wishlistIcon: "",
   addToCart: () => [],
   removeFromCart: () => [],
   searchProducts: () => [],
-  setCart:()=>[],
-  setProducts:()=>[],
-  setWishList:()=>[],
-  addToWishList:()=>[],
-  removeFromWishlist:()=>[],
+  setCart: () => [],
+  setProducts: () => [],
+  setWishList: () => [],
+  addToWishList: () => [],
+  removeFromWishlist: () => [],
 });
-
 
 export const ProductContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [cartCounter, setCartCounter] = useState(0);
   const [originalProducts, setOriginalProducts] = useState([]);
-  const [categories,setCategories] = useState([]);
-  const [boughtProducts,setBoughtProducts] = useState([]);
-  const [customers,setCustomers] = useState([])
-  const [currentUser,setCurrentUser] = useState('')
-  const [currentUserId,setCurrentUserId] = useState(null)
-  const [orders,setOrders]=useState([])
-  const [orderId,setOrderId]=useState(null)
-  const [wishlist,setWishlist] = useState([]);
-  const [existingWishlist,setExistingWishList] = useState([])
-  const [wishlistIcon,setWishlistIcon] = useState('#808080')
-
+  const [categories, setCategories] = useState([]);
+  const [boughtProducts, setBoughtProducts] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [currentUser, setCurrentUser] = useState("");
+  const [currentUserId, setCurrentUserId] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [orderId, setOrderId] = useState(null);
+  const [wishlist, setWishlist] = useState([]);
+  const [existingWishlist, setExistingWishList] = useState([]);
+  const [wishlistIcon, setWishlistIcon] = useState("#808080");
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data, error } = await supabase.from("products").select("*").eq('status', true);
+        const { data, error } = await supabase
+          .from("products")
+          .select("*")
+          .eq("status", true);
         if (error) {
           throw error;
         }
@@ -58,10 +59,10 @@ export const ProductContextProvider = ({ children }) => {
     const isProductInCart = cart.some((product) => product.id === id);
     if (!isProductInCart) {
       const addedProduct = products.find((product) => product.id === id);
-      addedProduct.quantity = 1 ;
+      addedProduct.quantity = 1;
       setCart([...cart, addedProduct]);
       localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]));
-      setCartCounter(cartCounter +1);
+      setCartCounter(cartCounter + 1);
     } else {
       console.log("Product is already in the cart");
     }
@@ -77,140 +78,136 @@ export const ProductContextProvider = ({ children }) => {
     }
   };
 
-
   //searching products logic
   const searchProducts = (e) => {
-    if (e.target.value === '') {
+    if (e.target.value === "") {
       setProducts(originalProducts);
     } else {
       const searchValue = e.target.value.toLowerCase();
-      
+
       const searchedProducts = products.filter((product) => {
-      const productName = product.name.toLowerCase();
-        
+        const productName = product.name.toLowerCase();
+
         if (productName.includes(searchValue)) {
-          console.log(product, "inputed");
           return true;
         } else {
-          console.log("nema produkt");
+          console.log("No product matches this value");
           return false;
         }
       });
-      console.log(searchedProducts, "pretraga");
       setProducts(searchedProducts);
     }
   };
 
-  //filtering all categories based on products 
-useEffect(()=>{
-  let uniqCategories  = []
-  products.forEach(product=>{
-    if(uniqCategories.some(category => category===product.category)){
-      return false
-    }
-    uniqCategories.push(product.category)
-  })
-  setCategories(uniqCategories)
-},[products])
-
-
-//getting bought products (if current users mail === any mail in customers table)
-useEffect(() => { 
-  async function checkUser() {
-    const { data: user, error } = await supabase.auth.getUser();
-    setCurrentUser(user.user?.email)
-    if (error) {
-      console.error("Error fetching user:", error.message);
-      return;
-    }
-  }
-  checkUser()
-},[])
-
-useEffect(()=>{
-  async function fetchUsers() {
-    try {
-      const { data, error } = await supabase.from("customers").select("*")
-      if (error) {
-        throw error;
+  //filtering all categories based on products
+  useEffect(() => {
+    let uniqCategories = [];
+    products.forEach((product) => {
+      if (uniqCategories.some((category) => category === product.category)) {
+        return false;
       }
-      setCustomers(data);
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
-    }
-  }
-  fetchUsers();
-},[])
+      uniqCategories.push(product.category);
+    });
+    setCategories(uniqCategories);
+  }, [products]);
 
-const trenutniKorisnik = customers.filter(customer=>customer.email === currentUser)
-useEffect(()=>{
-  setCurrentUserId(trenutniKorisnik[0]?.id)
-},[customers])
-
-
-useEffect(()=>{
-  async function fetchOrders() {
-    try {
-      const { data, error } = await supabase.from("orders").select("*").eq('customer_id', currentUserId);
-      console.log(data)
-      setOrderId(data[0]?.id)
+  //getting bought products (if current users mail === any mail in customers table)
+  useEffect(() => {
+    async function checkUser() {
+      const { data: user, error } = await supabase.auth.getUser();
+      setCurrentUser(user.user?.email);
       if (error) {
-        throw error;
+        console.error("Error fetching user:", error.message);
+        return;
       }
-      setOrders(data);
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
     }
-  }
-  fetchOrders();
-},[currentUserId])
+    checkUser();
+  }, []);
 
-useEffect(()=>{
-  async function fetchProducts() {
-    try {
-      const { data, error } = await supabase.from("order_product").select("*").eq('order_id', orderId);
-      console.log(data)
-      const originalBought = []
-      data.forEach(dataSet=>{
-        originalBought.push(dataSet.product_id)
-      })
-      setBoughtProducts(originalBought)
-      if (error) {
-        throw error;
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const { data, error } = await supabase.from("customers").select("*");
+        if (error) {
+          throw error;
+        }
+        setCustomers(data);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
       }
-      setOrders(data);
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
     }
-  }
-  fetchProducts();
-},[orderId])
+    fetchUsers();
+  }, []);
 
+  const trenutniKorisnik = customers.filter(
+    (customer) => customer.email === currentUser
+  );
+  useEffect(() => {
+    setCurrentUserId(trenutniKorisnik[0]?.id);
+  }, [customers]);
 
+  useEffect(() => {
+    async function fetchOrders() {
+      try {
+        const { data, error } = await supabase
+          .from("orders")
+          .select("*")
+          .eq("customer_id", currentUserId);
+        setOrderId(data[0]?.id);
+        if (error) {
+          throw error;
+        }
+        setOrders(data);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    }
+    fetchOrders();
+  }, [currentUserId]);
 
-  //wishlist logic 
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const { data, error } = await supabase
+          .from("order_product")
+          .select("*")
+          .eq("order_id", orderId);
+        const originalBought = [];
+        data.forEach((dataSet) => {
+          originalBought.push(dataSet.product_id);
+        });
+        setBoughtProducts(originalBought);
+        if (error) {
+          throw error;
+        }
+        setOrders(data);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    }
+    fetchProducts();
+  }, [orderId]);
+
+  //wishlist logic
   useEffect(() => {
     const existingWishList = JSON.parse(localStorage.getItem("wishlist")) || [];
     setWishlist(existingWishList);
   }, []);
-  
+
   function addToWishList(product) {
-    console.log('added to w-list');
     const updatedWishlist = [...wishlist, product];
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     setWishlist(updatedWishlist);
   }
-  function removeFromWishlist(productId){
-    const existingProduct = wishlist.find(item => item.id === productId);
-    const newWishList = wishlist.filter(item => item.id !== existingProduct.id);
+  function removeFromWishlist(productId) {
+    const existingProduct = wishlist.find((item) => item.id === productId);
+    const newWishList = wishlist.filter(
+      (item) => item.id !== existingProduct.id
+    );
     localStorage.setItem("wishlist", JSON.stringify(newWishList));
     setWishlist(newWishList);
-    setWishlistIcon('#080808')
+    setWishlistIcon("#080808");
   }
-
-console.log(wishlist, 'lista')
-
-
 
   const contextValue = {
     cart,
