@@ -10,6 +10,7 @@ const ProductContext = createContext({
   wishList: null,
   boughtProducts: null,
   wishlistIcon: "",
+  alreadyInCart: null,
   addToCart: () => [],
   removeFromCart: () => [],
   searchProducts: () => [],
@@ -35,7 +36,7 @@ export const ProductContextProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
   const [existingWishlist, setExistingWishList] = useState([]);
   const [wishlistIcon, setWishlistIcon] = useState("#808080");
-
+  const [alreadyInCart, setAlreadyInCart] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -56,6 +57,7 @@ export const ProductContextProvider = ({ children }) => {
   }, []);
 
   const addToCart = (id) => {
+    setAlreadyInCart(false);
     const isProductInCart = cart.some((product) => product.id === id);
     if (!isProductInCart) {
       const addedProduct = products.find((product) => product.id === id);
@@ -64,6 +66,7 @@ export const ProductContextProvider = ({ children }) => {
       localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]));
       setCartCounter(cartCounter + 1);
     } else {
+      setAlreadyInCart(true);
       console.log("Product is already in the cart");
     }
   };
@@ -217,6 +220,7 @@ export const ProductContextProvider = ({ children }) => {
     wishlist,
     wishlistIcon,
     cartCounter,
+    alreadyInCart,
     addToCart,
     addToWishList,
     removeFromWishlist,
