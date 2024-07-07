@@ -100,6 +100,9 @@ Products are organized into categories for easy browsing. Users can filter produ
 ### Search
 The search functionality enables users to search for products by keywords. Search results are displayed dynamically as users type.
 
+### Loyalty System
+Each repeating buyer is rewared with loyalty points that translate to discount.
+
 ### Authentication
 The authentication system allows users to register new accounts or log in to existing ones. Authenticated users can access their order history, view wishlisted items and more.
 
