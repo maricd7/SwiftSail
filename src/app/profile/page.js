@@ -1,17 +1,10 @@
-import React from 'react'
-import { Nav } from '../_components'
-import UserProfile from '../_components/UserProfile/UserProfile'
-import supabase from '../supabase'
-
+import React from "react";
+import { Nav } from "../_components";
+import UserProfile from "../_components/UserProfile/UserProfile";
+import supabase from "../supabase";
 
 function ProfilePage() {
-    
-    return (
-    <div>
-        <Nav/>
-        <UserProfile/>
-    </div>
-  )
+  return <UserProfile />;
 }
 
-export default ProfilePage
+export default ProfilePage;

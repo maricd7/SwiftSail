@@ -13,14 +13,14 @@ function ProductPage({ params }) {
   }
 
   return (
-    <ProductContextProvider>
+    <>
       <Nav />
       <div className="mx-auto my-24 flex justify-center h-screen	">
         <TopBoxWrapper toggleCart={toggleCart} />
         <CartIcon toggleCart={toggleCart} />
         {cartOpened ? <SideCart toggleCart={toggleCart} /> : <></>}
       </div>
-    </ProductContextProvider>
+    </>
   );
 }
 

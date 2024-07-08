@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { CtaButton, Input } from "../common";
-import { useFormik } from "formik";
-import { schema } from "@/app/Schemas";
 import supabase from "@/app/supabase";
 
 export const CheckoutForm = ({ total_amount, cart }) => {
@@ -35,7 +33,7 @@ export const CheckoutForm = ({ total_amount, cart }) => {
     const { error } = await supabase
       .from("customers")
       .update({ loyalty: 4 })
-      .eq("id", 1);
+      .eq("id");
 
     cart.forEach(async (el) => {
       await supabase.from("order_product").insert({

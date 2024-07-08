@@ -4,6 +4,8 @@ import { Nav } from "./_components";
 import Footer from "./_components/Footer/Footer";
 import Disclaimer from "./_components/Disclaimer/Disclaimer";
 import NewsLetter from "./_components/common/Modals/NewsLetter/NewsLetter";
+import { ProductContextProvider } from "./contexts/ProductsContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -13,14 +15,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className="mt-16 bg-gray-50 lg:mx-72 mx-4 min-h-screen">
-        <Disclaimer />
-        {children}
-
-        {/* <Nav/>  removed from layout cause next layout rerender conflicts*/}
-        <Footer />
-      </body>
-    </html>
+    <ProductContextProvider>
+      <AuthContextProvider>
+        <html lang="en">
+          <body className="mt-16 bg-gray-50 lg:mx-72 mx-4 min-h-screen">
+            <Disclaimer />
+            {children}
+            <Nav />
+            <Footer />
+          </body>
+        </html>
+      </AuthContextProvider>
+    </ProductContextProvider>
   );
 }

@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useState, useEffect, useContext } from "react";
 import supabase from "@/app/supabase";
 import Wishlist from "@/app/wishlist/page";
@@ -34,9 +35,9 @@ export const ProductContextProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [orderId, setOrderId] = useState(null);
   const [wishlist, setWishlist] = useState([]);
-  const [existingWishlist, setExistingWishList] = useState([]);
   const [wishlistIcon, setWishlistIcon] = useState("#808080");
   const [alreadyInCart, setAlreadyInCart] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -149,47 +150,47 @@ export const ProductContextProvider = ({ children }) => {
     setCurrentUserId(currentUserDB[0]?.id);
   }, [customers]);
 
-  useEffect(() => {
-    async function fetchOrders() {
-      try {
-        const { data, error } = await supabase
-          .from("orders")
-          .select("*")
-          .eq("customer_id", currentUserId);
-        setOrderId(data[0]?.id);
-        if (error) {
-          throw error;
-        }
-        setOrders(data);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
-      }
-    }
-    fetchOrders();
-  }, [currentUserId]);
+  // useEffect(() => {
+  //   async function fetchOrders() {
+  //     try {
+  //       const { data, error } = await supabase
+  //         .from("orders")
+  //         .select("*")
+  //         .eq("customer_id", currentUserId);
+  //       setOrderId(data[0]?.id);
+  //       if (error) {
+  //         throw error;
+  //       }
+  //       setOrders(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error.message);
+  //     }
+  //   }
+  //   fetchOrders();
+  // }, [currentUserId]);
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const { data, error } = await supabase
-          .from("order_product")
-          .select("*")
-          .eq("order_id", orderId);
-        const originalBought = [];
-        data.forEach((dataSet) => {
-          originalBought.push(dataSet.product_id);
-        });
-        setBoughtProducts(originalBought);
-        if (error) {
-          throw error;
-        }
-        setOrders(data);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
-      }
-    }
-    fetchProducts();
-  }, [orderId]);
+  // useEffect(() => {
+  //   async function fetchProducts() {
+  //     try {
+  //       const { data, error } = await supabase
+  //         .from("order_product")
+  //         .select("*")
+  //         .eq("order_id", orderId);
+  //       const originalBought = [];
+  //       data.forEach((dataSet) => {
+  //         originalBought.push(dataSet.product_id);
+  //       });
+  //       setBoughtProducts(originalBought);
+  //       if (error) {
+  //         throw error;
+  //       }
+  //       setOrders(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error.message);
+  //     }
+  //   }
+  //   fetchProducts();
+  // }, [orderId]);
 
   //wishlist logic
   useEffect(() => {

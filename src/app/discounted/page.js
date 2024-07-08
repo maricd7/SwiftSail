@@ -12,15 +12,12 @@ function DisocuntedProducts() {
     setCartOpened(!cartOpened);
   }
   return (
-    <div>
-      <ProductContextProvider>
-        <Nav />
-        <Heading text="Discounted Products" />
-        <DiscountedItems />
-        {cartOpened && <SideCart toggleCart={toggleCart} />}
-       <CartIcon toggleCart={toggleCart}/>
-      </ProductContextProvider>
-    </div>
+    <>
+      <Heading text="Discounted Products" />
+      <DiscountedItems />
+      {cartOpened && <SideCart toggleCart={toggleCart} />}
+      <CartIcon toggleCart={toggleCart} />
+    </>
   );
 }
 
