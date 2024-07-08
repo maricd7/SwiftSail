@@ -1,6 +1,8 @@
 # Introduction to SwiftSail
 SwiftSail is a comprehensive ecommerce platform  with features including cart management, checkout process, product browsing, category filtering, search functionality, user authentication, and wishlist management. Its kitted with its own custom built CMS (SwiftSailCMS) for fast and easy content management and tracking.
 
+#LIVE DEMO : https://swift-sail.vercel.app/ 
+
 # Technologies Used
 ### Next.js: 
 A React framework for building server-side rendered and statically generated applications.
