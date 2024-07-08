@@ -142,11 +142,11 @@ export const ProductContextProvider = ({ children }) => {
     fetchUsers();
   }, []);
 
-  const trenutniKorisnik = customers.filter(
+  const currentUserDB = customers.filter(
     (customer) => customer.email === currentUser
   );
   useEffect(() => {
-    setCurrentUserId(trenutniKorisnik[0]?.id);
+    setCurrentUserId(currentUserDB[0]?.id);
   }, [customers]);
 
   useEffect(() => {

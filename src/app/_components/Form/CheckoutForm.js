@@ -32,6 +32,11 @@ export const CheckoutForm = ({ total_amount, cart }) => {
       .select();
     let order = orderData.data[0];
 
+    const { error } = await supabase
+      .from("customers")
+      .update({ loyalty: 4 })
+      .eq("id", 1);
+
     cart.forEach(async (el) => {
       await supabase.from("order_product").insert({
         order_id: order.id,
