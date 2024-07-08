@@ -25,7 +25,7 @@ export const TopBox = ({ productparams }) => {
     return <div>Loading</div>;
   } else {
     return (
-      <div className="flex gap-8 mx-auto ">
+      <div className="lg:mx-72 mx-4 flex gap-8  md:flex-row flex-col">
         <img src={product.image} className="w-96 h-96" />
         <div className="max-w-lg w-lg">
           <h1 className="text-4xl font-bold">{product.name}</h1>

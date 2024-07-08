@@ -20,7 +20,7 @@ export default function LoginComponent() {
   }
 
   return (
-    <div className="w-full flex justify-center items-center">
+    <div className="w-full flex justify-center items-center h-screen">
       <form
         onSubmit={handleSubmit}
         className="p-16 max-w-lg bg-white rounded-md flex flex-col gap-2"

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { CategoryTag, CtaButton } from "../../common";
 import Link from "next/link";
@@ -16,12 +17,7 @@ export const ProductBox = ({
 }) => {
   const productRef = "/products/" + product.id;
 
-  //wishlist params
-  const [iconColor, setIconColor] = useState("#808080");
-  const [wishListModal, setWishListModal] = useState(false);
-  const [removedWishList, setRemovedWishList] = useState(false);
-
-  const { addToCart,wishlistIcon} = useProductContext();
+  const { addToCart, wishlistIcon } = useProductContext();
   const addProductItemToContext = (id) => () => {
     addToCart(id);
     handleModal();
@@ -48,13 +44,9 @@ export const ProductBox = ({
     checkStock();
   }, [product]);
 
-
   return (
     <div className="rounded-xl w-60 mt-8  rounded overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 cursor-pointer  flex flex-col justify-start items-center relative  ">
-      <WishListBtn
-        product={product}
-        wishlistIcon={wishlistIcon}
-      />
+      <WishListBtn product={product} wishlistIcon={wishlistIcon} />
       <Link
         href={{ pathname: productRef }}
         className="flex justify-center  flex-col  relative items-center"
@@ -75,15 +67,13 @@ export const ProductBox = ({
         </div>
       </Link>
       {stock ? (
-          <OutOfStock
-            product={product}
-          />
-        ) : (
-          <CtaButton
-            text="Add to Cart"
-            onClick={addProductItemToContext(product.id)}
-          />
-        )}
+        <OutOfStock product={product} />
+      ) : (
+        <CtaButton
+          text="Add to Cart"
+          onClick={addProductItemToContext(product.id)}
+        />
+      )}
       {stock}
     </div>
   );

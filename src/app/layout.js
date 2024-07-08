@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <ProductContextProvider>
       <AuthContextProvider>
         <html lang="en">
-          <body className="mt-16 bg-gray-50 lg:mx-72 mx-4 min-h-screen">
+          <body>
             <Disclaimer />
             {children}
             <Nav />

@@ -22,7 +22,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      <div className="mt-20">
+      <div className="mt-16 bg-gray-50 lg:mx-72 mx-4">
         <ShopHeader />
         {newsLetter ? <NewsLetter setNewsLetter={setNewsLetter} /> : <></>}
         {/* <Slider/> */}
