@@ -8,7 +8,7 @@ const EmptyWishlist = () => {
       <div className="flex flex-col gap-2">
         <Heading text="Your Wishlist is currently empty" />
         <p>
-          Add items you would like to buy in the future,don't forget what you
+          Add items you would like to buy in the future,dont forget what you
           liked.
         </p>
       </div>

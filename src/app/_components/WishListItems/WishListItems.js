@@ -11,7 +11,7 @@ export default function WishListItems() {
   }
 
   return (
-    <div className="mt-10 lg:mx-72 mx-4 h-screen ">
+    <div className="mt-10 lg:mx-72 mx-4 h-screeng8 ">
       <Heading text="Your wishlist" />
       <div className="flex flex-wrap gap-4  justify-start items-center h-full">
         {wishlist.map((wish, index) => (
