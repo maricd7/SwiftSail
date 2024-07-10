@@ -2,6 +2,8 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import supabase from "@/app/supabase";
 import Wishlist from "@/app/wishlist/page";
+import { checkUser } from "@/app/actions/getUserAction";
+import { fetchData } from "@/app/actions/getProducts";
 
 const ProductContext = createContext({
   products: null,
@@ -39,22 +41,14 @@ export const ProductContextProvider = ({ children }) => {
   const [alreadyInCart, setAlreadyInCart] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data, error } = await supabase
-          .from("products")
-          .select("*")
-          .eq("status", true);
-        if (error) {
-          throw error;
-        }
+    const fetchProducts = async () => {
+      const data = await fetchData();
+      if (data) {
         setProducts(data);
         setOriginalProducts(data);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
       }
-    }
-    fetchData();
+    };
+    fetchProducts();
   }, []);
 
   const addToCart = (id) => {
@@ -115,16 +109,8 @@ export const ProductContextProvider = ({ children }) => {
     setCategories(uniqCategories);
   }, [products]);
 
-  //getting bought products (if current users mail === any mail in customers table)
+  //getting bought products for current user
   useEffect(() => {
-    async function checkUser() {
-      const { data: user, error } = await supabase.auth.getUser();
-      setCurrentUser(user.user?.email);
-      if (error) {
-        console.error("Error fetching user:", error.message);
-        return;
-      }
-    }
     checkUser();
   }, []);
 
