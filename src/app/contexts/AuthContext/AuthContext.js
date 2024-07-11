@@ -1,85 +1,78 @@
 "use client";
 import { createContext, useState, useEffect, useContext } from "react";
-import supabase from "@/app/supabase";
 import { useRouter } from "next/navigation";
+import supabase from "@/app/supabase";
 
 const AuthContext = createContext({
+  currentUser: null,
   handleLogin: () => {},
   signOut: () => {},
-  setLogin: () => {},
-  login: true,
+  login: false,
 });
 
 export const AuthContextProvider = ({ children }) => {
   const [login, setLogin] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    async function checkUser() {
-      const { data: user, error } = await supabase.auth.getUser();
+    const fetchUser = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
       if (error) {
         console.error("Error fetching user:", error.message);
         return;
       }
-
-      // Check if user and user properties exist
-      if (user && user.user?.id) {
-        setLogin(false);
-      } else {
+      if (user) {
+        setCurrentUser(user);
         setLogin(true);
       }
-    }
-    checkUser();
+    };
+    fetchUser();
   }, []);
 
-  //Login user with email and password
   const handleLogin = async (email, password) => {
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+      email,
+      password,
     });
-    if (data) {
-      setLogin(true);
-    }
     if (error) {
-      console.error("Error signing up:", error.message);
-    } else {
-      console.log("User signed up successfully:", data.user);
+      console.error("Error logging in:", error.message);
+      return;
+    }
+    if (data) {
+      setCurrentUser(data.user);
       setLogin(true);
       router.push("/");
     }
   };
 
-  // Logout user
   const signOut = async () => {
-    console.log("sign out");
     const { error } = await supabase.auth.signOut();
-    console.log("success sign out");
     if (error) {
-      console.log("error signing out");
+      console.error("Error signing out:", error.message);
+      return;
     }
+    setCurrentUser(null);
     setLogin(false);
-  };
-
-  const contextValue = {
-    handleLogin,
-    signOut,
-    setLogin,
-    login,
+    router.push("/login");
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ currentUser, handleLogin, signOut, login }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
 export const useAuthContext = () => {
-  const authContext = useContext(AuthContext);
-
-  if (!authContext) {
+  const context = useContext(AuthContext);
+  if (!context) {
     throw new Error(
-      "No AuthContext.Provider found when calling useAuthContext."
+      "useAuthContext must be used within an AuthContextProvider"
     );
   }
-  return authContext;
+  return context;
 };

@@ -6,7 +6,6 @@ import supabase from "@/app/supabase";
 export const CheckoutForm = ({ total_amount, cart }) => {
   const [formData, setFormData] = useState({});
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
     async function getData() {
       const { data } = await supabase.from("products").select("*");

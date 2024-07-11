@@ -22,14 +22,10 @@ export default function UserProfile() {
   }, []);
   return (
     <ProductContextProvider>
-      <div className="mt-16 lg:mx-72 mx-4">
+      <div className="mt-16 lg:mx-72 mx-4 h-screen">
         <Heading text={userEmail} />
         <div className="mt-24 flex flex-col  flex-col gap-8">
           <BoughtProducts />
-          <div className="bg-white rounded-lg p-8 shadow-md">
-            <h2 className="text-2xl font-bold">Your Wishlist</h2>
-            <WishListItems />
-          </div>
         </div>
       </div>
     </ProductContextProvider>

@@ -1,45 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Logo } from "../Logo";
-import { ProductContextProvider } from "@/app/contexts/ProductsContext";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import supabase from "@/app/supabase";
-import { useRouter } from "next/navigation";
-import {
-  AuthContextProvider,
-  useAuthContext,
-} from "@/app/contexts/AuthContext";
+import { useAuthContext } from "@/app/contexts/AuthContext";
+import { Logo } from "../Logo";
 
 export const Nav = () => {
   const [burger, setBurger] = useState(false);
-  const { signOut, setLogin, login } = useAuthContext();
+  const { signOut, login, currentUser } = useAuthContext();
 
-  useEffect(() => {
-    async function checkUser() {
-      const { data: user, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error("Error fetching user:", error.message);
-        return;
-      }
-
-      //check if user and user properties exists
-      if (user && user.user?.id) {
-        setLogin(false);
-      } else {
-        setLogin(true);
-      }
-    }
-    checkUser();
-  }, []);
-
-  //burger toggle
-  function toggleBurger() {
+  const toggleBurger = () => {
     setBurger(!burger);
-  }
+  };
 
   return (
-    <nav className="lg:px-72 px-4 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0 fixed">
+    <nav className="lg:px-72 px-4 py-4 flex w-full justify-between items-center fixed z-40 bg-white top-0 left-0">
       <div className="flex gap-4 items-center w-full justify-between">
         <Logo />
         <div className="gap-8 flex items-center">
@@ -73,7 +48,7 @@ export const Nav = () => {
                 width="32"
                 height="32"
                 style={{ color: "#000" }}
-                onClick={() => signOut()}
+                onClick={signOut}
               />
             </>
           )}
@@ -87,8 +62,8 @@ export const Nav = () => {
           />
         </div>
       </div>
-      {burger ? (
-        <div className="w-full bg-white h-screen absolute z-40 top-0 right-0 flex flex-col justify-center items-center  ">
+      {burger && (
+        <div className="w-full bg-white h-screen absolute z-40 top-0 right-0 flex flex-col justify-center items-center">
           <Icon
             className="cursor-pointer absolute top-4 right-4"
             icon="carbon:close"
@@ -102,7 +77,6 @@ export const Nav = () => {
               <Link href="/login">Login</Link>
             </li>
             <li>
-              {" "}
               <Link href="/wishlist" className="items-center gap-2 flex">
                 <Icon
                   icon="ph:heart-straight-fill"
@@ -115,8 +89,6 @@ export const Nav = () => {
             </li>
           </ul>
         </div>
-      ) : (
-        <></>
       )}
     </nav>
   );
