@@ -4,6 +4,7 @@ import { CtaButton, Input } from "../common";
 import supabase from "@/app/supabase";
 import { updateUserLoyalty } from "@/app/actions/userActions";
 import { useAuthContext } from "@/app/contexts/AuthContext";
+import { updateStock } from "@/app/actions/updateStock";
 
 export const CheckoutForm = ({ total_amount, cart }) => {
   const [formData, setFormData] = useState({});
@@ -40,18 +41,8 @@ export const CheckoutForm = ({ total_amount, cart }) => {
         product_id: el.id,
         quantity: el.quantity,
       });
-
-      //update stock
-      const productToUpdate = products.find((product) => product.id === el.id);
-      if (productToUpdate) {
-        const updatedStock = productToUpdate.stock - el.quantity;
-        await supabase
-          .from("products")
-          .update({ stock: updatedStock, sold: el.quantity })
-          .eq("id", el.id);
-      }
+      updateStock(products, el);
     });
-
     //update loyalty
     updateUserLoyalty(currentUser.email);
   }
