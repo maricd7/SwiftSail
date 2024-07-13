@@ -19,6 +19,7 @@ export const Nav = () => {
       <div className="flex gap-4 items-center w-full justify-between">
         <Logo />
         <div className="gap-8 flex items-center">
+          <Loyalty />
           <Link href="/wishlist" className="hidden items-center gap-2 md:flex">
             <Icon
               icon="ph:heart-straight-fill"
@@ -91,7 +92,6 @@ export const Nav = () => {
           </ul>
         </div>
       )}
-      <Loyalty />
     </nav>
   );
 };
