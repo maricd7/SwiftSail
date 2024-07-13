@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 import { Logo } from "../Logo";
+import Loyalty from "../Loyalty/Loyalty";
 
 export const Nav = () => {
   const [burger, setBurger] = useState(false);
@@ -90,6 +91,7 @@ export const Nav = () => {
           </ul>
         </div>
       )}
+      <Loyalty />
     </nav>
   );
 };

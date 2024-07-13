@@ -20,8 +20,9 @@ export default function RootLayout({ children }) {
         <html lang="en">
           <body>
             <Disclaimer />
-            {children}
             <Nav />
+            {children}
+
             <Footer />
           </body>
         </html>

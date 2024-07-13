@@ -79,3 +79,16 @@ export const getUserBoughtProducts = async (user) => {
 
   return productsData;
 };
+
+export const getUserLoyalty = async (email) => {
+  const { data, error } = await supabase
+    .from("customers")
+    .select("loyalty")
+    .eq("email", email);
+  if (data && data.length > 0) {
+    return data[0];
+  } else {
+    console.error(error);
+    return null;
+  }
+};
