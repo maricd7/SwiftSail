@@ -92,3 +92,10 @@ export const getUserLoyalty = async (email) => {
     return null;
   }
 };
+
+export const updateUserLoyalty = async (email) => {
+  const { error } = await supabase
+    .from("customers")
+    .update({ loyalty: 20 })
+    .eq("email", email);
+};

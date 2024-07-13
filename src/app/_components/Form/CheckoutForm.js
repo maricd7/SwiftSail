@@ -2,10 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { CtaButton, Input } from "../common";
 import supabase from "@/app/supabase";
+import { updateUserLoyalty } from "@/app/actions/userActions";
+import { useAuthContext } from "@/app/contexts/AuthContext";
 
 export const CheckoutForm = ({ total_amount, cart }) => {
   const [formData, setFormData] = useState({});
   const [products, setProducts] = useState([]);
+  const { currentUser } = useAuthContext();
+
   useEffect(() => {
     async function getData() {
       const { data } = await supabase.from("products").select("*");
@@ -23,16 +27,12 @@ export const CheckoutForm = ({ total_amount, cart }) => {
       .upsert(formData)
       .select();
     let customer = customerData.data[0];
+
     const orderData = await supabase
       .from("orders")
       .upsert({ customer_id: customer.id, value: total_amount })
       .select();
     let order = orderData.data[0];
-
-    const { error } = await supabase
-      .from("customers")
-      .update({ loyalty: 4 })
-      .eq("id");
 
     cart.forEach(async (el) => {
       await supabase.from("order_product").insert({
@@ -51,6 +51,9 @@ export const CheckoutForm = ({ total_amount, cart }) => {
           .eq("id", el.id);
       }
     });
+
+    //update loyalty
+    updateUserLoyalty(currentUser.email);
   }
 
   const handleInputChange = (event) => {
