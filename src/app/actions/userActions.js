@@ -80,6 +80,21 @@ export const getUserBoughtProducts = async (user) => {
   return productsData;
 };
 
+//check if customer exists in db
+
+export const checkIfCustomerExists = async (email) => {
+  const { data, error } = await supabase
+    .from("customers")
+    .select()
+    .eq("email", email);
+  if (data) {
+    return true;
+  }
+  if (error) {
+    return console.log("Error checking existing user.");
+  }
+};
+
 export const getUserLoyalty = async (email) => {
   const { data, error } = await supabase
     .from("customers")
@@ -102,6 +117,6 @@ export const updateUserLoyalty = async (email, cartLength) => {
     .update({ loyalty: updatedUserLoyalty })
     .eq("email", email);
   if (error) {
-    return console.log("Error updating user loyalty");
+    return console.log("Error updating user loyalty", error);
   }
 };

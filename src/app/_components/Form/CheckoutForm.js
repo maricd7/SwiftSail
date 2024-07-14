@@ -2,7 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { CtaButton, Input } from "../common";
 import supabase from "@/app/supabase";
-import { updateUserLoyalty } from "@/app/actions/userActions";
+import {
+  checkIfCustomerExists,
+  updateUserLoyalty,
+} from "@/app/actions/userActions";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 import { updateStock } from "@/app/actions/updateStock";
 
@@ -10,6 +13,7 @@ export const CheckoutForm = ({ total_amount, cart }) => {
   const [formData, setFormData] = useState({});
   const [products, setProducts] = useState([]);
   const { currentUser } = useAuthContext();
+  const [customer, setCustomer] = useState();
 
   useEffect(() => {
     async function getData() {
@@ -20,33 +24,45 @@ export const CheckoutForm = ({ total_amount, cart }) => {
   }, []);
 
   //handle submit
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const customerData = await supabase
-      .from("customers")
-      .upsert(formData)
-      .select();
-    let customer = customerData.data[0];
+    const userExists = await checkIfCustomerExists(currentUser.email);
 
-    const orderData = await supabase
-      .from("orders")
-      .upsert({ customer_id: customer.id, value: total_amount })
-      .select();
-    let order = orderData.data[0];
+    if (!userExists) {
+      const customerData = await supabase
+        .from("customers")
+        .upsert(formData)
+        .select();
+      setCustomer(customerData.data[0]);
+    } else {
+      const { data, error } = await supabase
+        .from("customers")
+        .select()
+        .eq("email", currentUser.email);
+      setCustomer(data[0]);
+    }
+    console.log("cutomer", customer);
+    if (customer) {
+      const orderData = await supabase
+        .from("orders")
+        .upsert({ customer_id: customer.id, value: total_amount })
+        .select();
+      let order = orderData.data[0];
 
-    cart.forEach(async (el) => {
-      await supabase.from("order_product").insert({
-        order_id: order.id,
-        product_id: el.id,
-        quantity: el.quantity,
+      cart.forEach(async (el) => {
+        await supabase.from("order_product").insert({
+          order_id: order.id,
+          product_id: el.id,
+          quantity: el.quantity,
+        });
+        updateStock(products, el);
       });
-      updateStock(products, el);
-    });
+    }
 
     //update loyalty
     updateUserLoyalty(currentUser.email, cart.length);
-  }
+  };
 
   const handleInputChange = (event) => {
     const { target } = event;
