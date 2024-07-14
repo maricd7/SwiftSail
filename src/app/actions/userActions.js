@@ -93,9 +93,15 @@ export const getUserLoyalty = async (email) => {
   }
 };
 
-export const updateUserLoyalty = async (email) => {
+export const updateUserLoyalty = async (email, cartLength) => {
+  const currentLoyalty = await getUserLoyalty(email);
+  let updatedUserLoyalty = currentLoyalty.loyalty + 2 * cartLength;
+
   const { error } = await supabase
     .from("customers")
-    .update({ loyalty: 20 })
+    .update({ loyalty: updatedUserLoyalty })
     .eq("email", email);
+  if (error) {
+    return console.log("Error updating user loyalty");
+  }
 };

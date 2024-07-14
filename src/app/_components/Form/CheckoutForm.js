@@ -43,8 +43,9 @@ export const CheckoutForm = ({ total_amount, cart }) => {
       });
       updateStock(products, el);
     });
+
     //update loyalty
-    updateUserLoyalty(currentUser.email);
+    updateUserLoyalty(currentUser.email, cart.length);
   }
 
   const handleInputChange = (event) => {

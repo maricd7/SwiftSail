@@ -22,8 +22,8 @@ const Loyalty = () => {
     return console.log("Error fetching loyalty.");
   }
   return (
-    <div class="flex items-center space-x-2 text-sm font-medium text-gray-700">
-      <span class="px-2 py-1 bg-blue-100 rounded-md">
+    <div className="flex items-center space-x-2 text-sm font-medium text-gray-700">
+      <span className="px-2 py-1 bg-blue-100 rounded-md">
         Loyalty: {loyalty.loyalty}
       </span>
     </div>
