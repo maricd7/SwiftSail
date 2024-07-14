@@ -42,7 +42,7 @@ export const CheckoutForm = ({ total_amount, cart }) => {
         .eq("email", currentUser.email);
       setCustomer(data[0]);
     }
-    console.log("cutomer", customer);
+
     if (customer) {
       const orderData = await supabase
         .from("orders")
