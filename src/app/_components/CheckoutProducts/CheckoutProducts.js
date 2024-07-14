@@ -5,10 +5,9 @@ import { TotalPrice } from "./TotalPrice";
 import { getUserLoyalty } from "@/app/actions/userActions";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 
-export const CheckoutProducts = ({ cart }) => {
+export const CheckoutProducts = ({ cart, finalTotal }) => {
   const [orderTotal, setOrderTotal] = useState(0);
   const [loyaltyDiscount, setLoyaltyDiscount] = useState(0);
-  const [finalTotal, setFinalTotal] = useState(0);
 
   const { currentUser } = useAuthContext();
 
@@ -30,14 +29,6 @@ export const CheckoutProducts = ({ cart }) => {
     getLoyaltyDiscount();
   }, [currentUser]);
 
-  useEffect(() => {
-    const applyDiscount = () => {
-      let discountAmount = (loyaltyDiscount / 1000) * orderTotal;
-      setFinalTotal(orderTotal - discountAmount);
-    };
-    applyDiscount();
-  }, [orderTotal, loyaltyDiscount]);
-
   return (
     <div className="w-96 bg-white rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-8 ">
       <h4 className="font-semibold text-2xl mb-8">Review your Products</h4>
@@ -52,7 +43,7 @@ export const CheckoutProducts = ({ cart }) => {
       ) : (
         <></>
       )}
-      <TotalPrice orderTotal={finalTotal.toFixed(2)} />
+      <TotalPrice orderTotal={finalTotal} />
     </div>
   );
 };
