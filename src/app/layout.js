@@ -3,7 +3,6 @@ import "./globals.css";
 import { Nav } from "./_components";
 import Footer from "./_components/Footer/Footer";
 import Disclaimer from "./_components/Disclaimer/Disclaimer";
-import NewsLetter from "./_components/common/Modals/NewsLetter/NewsLetter";
 import { ProductContextProvider } from "./contexts/ProductsContext";
 import { AuthContextProvider } from "./contexts/AuthContext";
 const inter = Inter({ subsets: ["latin"] });

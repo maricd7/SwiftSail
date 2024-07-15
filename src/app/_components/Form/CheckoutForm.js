@@ -8,9 +8,10 @@ import {
 } from "@/app/actions/userActions";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 import { updateStock } from "@/app/actions/updateStock";
+import { schema } from "@/app/Schemas";
+import { useFormik } from "formik";
 
 export const CheckoutForm = ({ total_amount, cart }) => {
-  const [formData, setFormData] = useState({});
   const [products, setProducts] = useState([]);
   const { currentUser } = useAuthContext();
   const [customer, setCustomer] = useState();
@@ -23,58 +24,57 @@ export const CheckoutForm = ({ total_amount, cart }) => {
     getData();
   }, []);
 
-  //handle submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      name: "",
+      phone: "",
+      city: "",
+      address: "",
+      postalCode: "",
+    },
+    validationSchema: schema,
+    onSubmit: async (values) => {
+      const userExists = await checkIfCustomerExists(currentUser.email);
 
-    const userExists = await checkIfCustomerExists(currentUser.email);
+      if (!userExists) {
+        const customerData = await supabase
+          .from("customers")
+          .upsert(values)
+          .select();
+        setCustomer(customerData.data[0]);
+      } else {
+        const { data } = await supabase
+          .from("customers")
+          .select()
+          .eq("email", currentUser.email);
+        setCustomer(data[0]);
+      }
 
-    if (!userExists) {
-      const customerData = await supabase
-        .from("customers")
-        .upsert(formData)
-        .select();
-      setCustomer(customerData.data[0]);
-    } else {
-      const { data, error } = await supabase
-        .from("customers")
-        .select()
-        .eq("email", currentUser.email);
-      setCustomer(data[0]);
-    }
+      if (customer) {
+        const orderData = await supabase
+          .from("orders")
+          .upsert({ customer_id: customer.id, value: total_amount })
+          .select();
+        let order = orderData.data[0];
 
-    if (customer) {
-      const orderData = await supabase
-        .from("orders")
-        .upsert({ customer_id: customer.id, value: total_amount })
-        .select();
-      let order = orderData.data[0];
-
-      cart.forEach(async (el) => {
-        await supabase.from("order_product").insert({
-          order_id: order.id,
-          product_id: el.id,
-          quantity: el.quantity,
+        cart.forEach(async (el) => {
+          await supabase.from("order_product").insert({
+            order_id: order.id,
+            product_id: el.id,
+            quantity: el.quantity,
+          });
+          updateStock(products, el);
         });
-        updateStock(products, el);
-      });
-    }
+      }
 
-    //update loyalty
-    updateUserLoyalty(currentUser.email, cart.length);
-  };
+      //update loyalty
+      updateUserLoyalty(currentUser.email, cart.length);
+    },
+  });
 
-  const handleInputChange = (event) => {
-    const { target } = event;
-    const { name, value } = target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
   return (
-    <form onSubmit={handleSubmit} method="POST" id="customer_form">
+    <form onSubmit={formik.handleSubmit} method="POST" id="customer_form">
       <div className="w-96 bg-white rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-8 ">
         <h1 className="text-4xl font-bold">Checkout</h1>
         <Input
@@ -82,42 +82,66 @@ export const CheckoutForm = ({ total_amount, cart }) => {
           type="text"
           label="Email"
           placeholder="email"
-          onChange={handleInputChange}
+          onChange={formik.handleChange}
+          value={formik.values.email}
         />
+        {formik.errors.email && formik.touched.email && (
+          <div className="text-red-500">{formik.errors.email}</div>
+        )}
         <Input
           name="name"
           label="Name"
           placeholder="Name"
-          onChange={handleInputChange}
+          onChange={formik.handleChange}
+          value={formik.values.name}
         />
+        {formik.errors.name && formik.touched.name && (
+          <div className="text-red-500">{formik.errors.name}</div>
+        )}
         <Input
           type="number"
           name="phone"
           label="Phone"
           placeholder="Phone"
-          onChange={handleInputChange}
+          onChange={formik.handleChange}
+          value={formik.values.phone}
         />
+        {formik.errors.phone && formik.touched.phone && (
+          <div className="text-red-500">{formik.errors.phone}</div>
+        )}
         <Input
           type="text"
           name="city"
           label="City"
           placeholder="City"
-          onChange={handleInputChange}
+          onChange={formik.handleChange}
+          value={formik.values.city}
         />
+        {formik.errors.city && formik.touched.city && (
+          <div className="text-red-500">{formik.errors.city}</div>
+        )}
         <Input
           type="text"
           name="address"
           label="Address"
           placeholder="Address"
-          onChange={handleInputChange}
+          onChange={formik.handleChange}
+          value={formik.values.address}
         />
+        {formik.errors.address && formik.touched.address && (
+          <div className="text-red-500">{formik.errors.address}</div>
+        )}
         <Input
           type="text"
-          name="postal_code"
+          name="postalCode"
           label="Postal code"
           placeholder="Postal code"
-          onChange={handleInputChange}
+          onChange={formik.handleChange}
+          value={formik.values.postalCode}
         />
+        {formik.errors.postalCode && formik.touched.postalCode && (
+          <div className="text-red-500">{formik.errors.postalCode}</div>
+        )}
         <CtaButton type="submit" text="Order Now" />
       </div>
     </form>
