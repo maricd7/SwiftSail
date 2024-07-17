@@ -54,7 +54,7 @@ const Checkout = () => {
         total_amount={finalTotal.toFixed(2)}
         quantity={quantity}
       />
-      <CheckoutProducts cart={cart} total={finalTotal.toFixed(2)} />
+      <CheckoutProducts cart={cart} finalTotal={finalTotal.toFixed(2)} />
     </div>
   );
 };
