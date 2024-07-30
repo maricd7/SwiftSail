@@ -10,11 +10,13 @@ import { useAuthContext } from "@/app/contexts/AuthContext";
 import { updateStock } from "@/app/actions/updateStock";
 import { schema } from "@/app/Schemas";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 
 export const CheckoutForm = ({ total_amount, cart }) => {
   const [products, setProducts] = useState([]);
   const { currentUser } = useAuthContext();
   const [customer, setCustomer] = useState();
+  const router = useRouter();
 
   useEffect(() => {
     async function getData() {
@@ -70,6 +72,9 @@ export const CheckoutForm = ({ total_amount, cart }) => {
 
       //update loyalty
       updateUserLoyalty(currentUser.email, cart.length);
+
+      //redirect to thanks page
+      router.push("/thanks");
     },
   });
 
