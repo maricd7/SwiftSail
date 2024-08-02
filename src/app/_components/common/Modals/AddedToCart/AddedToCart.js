@@ -9,7 +9,7 @@ export const AddedToCart = () => {
 
   if (alreadyInCart) {
     return (
-      <div className="flex flex-col items-center justify-between fixed p-4 w-96 rounded-lg bg-white left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-gray-200">
+      <div className="flex flex-col items-center justify-between fixed p-4 w-64 lg:w-96 rounded-lg bg-white left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-gray-200">
         <div className="flex flex-col gap-2 text-center justify-center items-center">
           <span className="text-2xl font-bold">
             Product already in the cart
@@ -20,7 +20,7 @@ export const AddedToCart = () => {
     );
   }
   return (
-    <div className="flex flex-col items-center justify-between fixed p-4 w-96 h-96 rounded-lg bg-white left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-gray-200">
+    <div className="flex flex-col items-center justify-between fixed p-4 w-64  lg:w-96 lg:h-96 rounded-lg bg-white left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-gray-200">
       <div className="flex flex-col justify-center items-center gap-8">
         <Icon
           icon="bi:cart-check"
