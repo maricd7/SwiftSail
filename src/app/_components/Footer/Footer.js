@@ -22,6 +22,11 @@ const Footer = () => {
               Contact
             </a>
           </li>
+          <li>
+            <a href="/rankings" className="hover:text-gray-400">
+              Rankings
+            </a>
+          </li>
         </ul>
       </div>
     </footer>
