@@ -1,7 +1,6 @@
 "use client";
-import { getUserBoughtProducts } from "@/app/actions/userActions";
+import { getUserBoughtProducts } from "../../actions/userActions";
 import { useAuthContext } from "@/app/contexts/AuthContext";
-import { Coming_Soon } from "next/font/google";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 

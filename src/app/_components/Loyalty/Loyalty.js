@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "@/app/contexts/AuthContext";
-import { getUserLoyalty } from "@/app/actions/userActions";
-
+import { getUserLoyalty } from "../../actions/userActions";
 const Loyalty = () => {
   const { currentUser } = useAuthContext();
   const [loyalty, setLoyalty] = useState(null);

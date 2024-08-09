@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserRankings = () => {
-  return <div>UserRankings</div>;
+const RankingsPage = () => {
+  return <div>RankingsPage</div>;
 };
 
-export default UserRankings;
+export default RankingsPage;
