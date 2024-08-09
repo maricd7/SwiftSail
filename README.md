@@ -1,4 +1,4 @@
-# Introduction to SwiftSail
+t# Introduction to SwiftSail
 SwiftSail is a comprehensive ecommerce platform  with features including cart management, checkout process, product browsing, category filtering, search functionality, user authentication, and wishlist management. Its kitted with its own custom built CMS (SwiftSailCMS) for fast and easy content management and tracking.
 
 # LIVE DEMO : https://swift-sail.vercel.app/ 
@@ -104,6 +104,8 @@ The search functionality enables users to search for products by keywords. Searc
 
 ### Loyalty System
 Each repeating buyer is rewared with loyalty points that translate to discount.
+
+### User Tier System
 
 ### Authentication
 The authentication system allows users to register new accounts or log in to existing ones. Authenticated users can access their order history, view wishlisted items and more.
